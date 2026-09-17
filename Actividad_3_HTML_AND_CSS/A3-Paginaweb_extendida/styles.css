@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: #222;
+  line-height: 1.6;
+}
+
+header.perfil {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background-color: #1f2937;
+  color: #ffffff;
+  padding: 2.5rem 5%;
+  flex-wrap: wrap;
+}
+
+header.perfil img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ffffff;
+}
+
+header.perfil .titulo h1 {
+  margin: 0 0 0.3rem 0;
+  font-size: 2rem;
+}
+
+header.perfil .titulo p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 1.1rem;
+}
+
+nav.indice {
+  background-color: #111827;
+  padding: 0.8rem 5%;
+}
+
+nav.indice ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav.indice a {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+nav.indice a:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 2rem 5%;
+}
+
+section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+  margin-top: 0;
+  color: #1f2937;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+section h3 {
+  color: #374151;
+  margin-bottom: 0.3rem;
+}
+
+ul {
+  padding-left: 1.2rem;
+}
+
+a {
+  color: #2563eb;
+}
+
+table.horario {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+table.horario caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+table.horario th,
+table.horario td {
+  border: 1px solid #d1d5db;
+  padding: 0.7rem;
+  text-align: left;
+}
+
+table.horario thead {
+  background-color: #1f2937;
+  color: #ffffff;
+}
+
+table.horario tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
