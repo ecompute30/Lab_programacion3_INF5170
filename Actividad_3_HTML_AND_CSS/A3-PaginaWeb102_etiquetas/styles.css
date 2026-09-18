@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: #222;
+  line-height: 1.5;
+}
+
+header.portada {
+  background-color: #1f2937;
+  color: #ffffff;
+  padding: 2.5rem 5%;
+  text-align: center;
+}
+
+header.portada h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+}
+
+header.portada p {
+  margin: 0;
+  color: #cbd5e1;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 5% 3rem;
+}
+
+.controles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.controles input[type="search"] {
+  flex: 1;
+  min-width: 220px;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.controles #contador {
+  color: #4b5563;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.tabla-wrapper {
+  overflow-x: auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+table#tabla-etiquetas {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+table#tabla-etiquetas th,
+table#tabla-etiquetas td {
+  border: 1px solid #e5e7eb;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  vertical-align: top;
+  font-size: 0.92rem;
+}
+
+table#tabla-etiquetas thead {
+  background-color: #1f2937;
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+}
+
+table#tabla-etiquetas tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+table#tabla-etiquetas tbody tr:hover {
+  background-color: #eef2ff;
+}
+
+table#tabla-etiquetas td:first-child {
+  text-align: center;
+  font-weight: bold;
+  color: #374151;
+  width: 3rem;
+}
+
+table#tabla-etiquetas code {
+  background-color: #f1f5f9;
+  color: #b91c1c;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
