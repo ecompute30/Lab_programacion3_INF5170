@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banco Uastiano — Banca para la comunidad universitaria</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="barra-superior">
+    <div class="contenedor">
+      <a href="#cuentas">Estudiantes</a>
+      <a href="#tarjetas">Egresados</a>
+      <a href="#prestamos">Docentes</a>
+      <a href="#sucursales">Ubícanos</a>
+      <a href="#contacto">Contáctanos</a>
+    </div>
+  </div>
+
+  <header class="principal">
+    <div class="encabezado-contenido">
+      <div class="logo-uastiano">
+        <img src="https://uasd.edu.do/wp-content/themes/pagina/img/logo_uasd_pie.svg" alt="Universidad Autónoma de Santo Domingo">
+        <span>Banco Uastiano</span>
+      </div>
+      <div class="acciones-header">
+        <a href="#contacto" class="boton boton-contorno">Iniciar Sesión</a>
+        <a href="#cuentas" class="boton boton-relleno">Hazte cliente</a>
+      </div>
+    </div>
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+    <label for="menu-toggle" class="menu-toggle-label">&#9776;</label>
+
+    <nav class="menu-principal">
+      <ul>
+        <li>
+          <a href="#cuentas">Cuentas</a>
+          <ul class="submenu">
+            <li><a href="#cuentas">Cuenta de Ahorro Estudiantil</a></li>
+            <li><a href="#cuentas">Cuenta Programada de Matrícula</a></li>
+            <li><a href="#cuentas">Cuenta Nómina Docente</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#tarjetas">Tarjetas</a>
+          <ul class="submenu">
+            <li><a href="#tarjetas">Débito Uastiano Virtual</a></li>
+            <li><a href="#tarjetas">Crédito Egresado</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#prestamos">Préstamos</a>
+          <ul class="submenu">
+            <li><a href="#prestamos">Préstamo de Matrícula</a></li>
+            <li><a href="#prestamos">Préstamo para Equipos Tecnológicos</a></li>
+            <li><a href="#prestamos">Préstamo para Tesis y Grado</a></li>
+          </ul>
+        </li>
+        <li><a href="#becas">Becas y Ayuda Estudiantil</a></li>
+        <li><a href="#sucursales">Sucursales</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-texto">
+      <h1>Tu banca pensada para la vida universitaria</h1>
+      <p>
+        Banco Uastiano acompaña a estudiantes, docentes y egresados con cuentas,
+        tarjetas y préstamos diseñados para cada etapa de la vida académica.
+        Abre tu Cuenta de Ahorro Estudiantil desde tu celular y recibe tu
+        tarjeta de débito virtual en minutos.
+      </p>
+      <a href="#cuentas" class="boton boton-relleno">Abrir cuenta</a>
+    </div>
+    <div class="hero-imagen" aria-hidden="true">🎓💳</div>
+  </section>
+
+  <div class="buscador-rapido">
+    <form onsubmit="return false;">
+      <input type="search" placeholder="¿Qué producto o servicio estás buscando?">
+      <button type="submit">Buscar</button>
+    </form>
+  </div>
+
+  <div class="accesos-rapidos">
+    <a class="acceso" href="#cuentas">
+      <span class="icono">🏦</span>
+      <span>Cuentas</span>
+    </a>
+    <a class="acceso" href="#tarjetas">
+      <span class="icono">💳</span>
+      <span>Tarjetas</span>
+    </a>
+    <a class="acceso" href="#prestamos">
+      <span class="icono">📄</span>
+      <span>Préstamos</span>
+    </a>
+    <a class="acceso" href="#becas">
+      <span class="icono">🎓</span>
+      <span>Becas</span>
+    </a>
+    <a class="acceso" href="#sucursales">
+      <span class="icono">📍</span>
+      <span>Sucursales</span>
+    </a>
+    <a class="acceso" href="#contacto">
+      <span class="icono">☎️</span>
+      <span>Soporte</span>
+    </a>
+  </div>
+
+  <main>
+
+    <section class="producto" id="cuentas">
+      <h2>Cuentas</h2>
+      <p>Cuentas sin comisión de mantenimiento para quienes forman parte de la comunidad UASD.</p>
+      <div class="tarjetas-producto">
+        <div class="tarjeta">
+          <span class="etiqueta-destacado">Más popular</span>
+          <h3>Cuenta de Ahorro Estudiantil</h3>
+          <p>Abierta con tu carnet universitario. Sin monto mínimo de apertura y con app para consultar tu saldo antes de cada matrícula.</p>
+        </div>
+        <div class="tarjeta">
+          <h3>Cuenta Programada de Matrícula</h3>
+          <p>Aparta automáticamente una parte de tu mesada o beca cada mes para cubrir la matrícula del siguiente cuatrimestre.</p>
+        </div>
+        <div class="tarjeta">
+          <h3>Cuenta Nómina Docente</h3>
+          <p>Pensada para el personal docente y administrativo, con acreditación de nómina y beneficios preferenciales en préstamos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="producto" id="tarjetas">
+      <h2>Tarjetas</h2>
+      <p>Tarjetas vinculadas a tus cuentas Uastiano, ideales para gastos del día a día en el campus.</p>
+      <div class="tarjetas-producto">
+        <div class="tarjeta">
+          <h3>Débito Uastiano Virtual</h3>
+          <p>Se genera al instante desde la app al abrir tu Cuenta de Ahorro Estudiantil. Úsala en librerías, cafeterías y comercios en línea.</p>
+        </div>
+        <div class="tarjeta">
+          <h3>Crédito Egresado</h3>
+          <p>Disponible al graduarte, con línea inicial basada en tu historial como cuentahabiente estudiantil y sin cuota el primer año.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="producto" id="prestamos">
+      <h2>Préstamos</h2>
+      <p>Financiamiento con tasas preferenciales para necesidades propias de la vida académica.</p>
+      <table class="tabla-datos">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Tasa anual</th>
+            <th>Plazo máximo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Préstamo de Matrícula</td>
+            <td>6.5%</td>
+            <td>12 meses</td>
+          </tr>
+          <tr>
+            <td>Préstamo para Equipos Tecnológicos</td>
+            <td>8.0%</td>
+            <td>24 meses</td>
+          </tr>
+          <tr>
+            <td>Préstamo para Tesis y Grado</td>
+            <td>7.2%</td>
+            <td>18 meses</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="producto" id="becas">
+      <h2>Becas y Ayuda Estudiantil</h2>
+      <p>
+        El Fondo Uastiano de Becas apoya a estudiantes con alto rendimiento académico
+        y situaciones económicas especiales mediante aportes al pago de matrícula y
+        un programa de ahorro para quienes planean continuar a un postgrado.
+      </p>
+      <div class="faq">
+        <details>
+          <summary>¿Quién puede solicitar el Fondo Uastiano de Becas?</summary>
+          <p>Estudiantes activos de la UASD con al menos un cuatrimestre cursado y una Cuenta de Ahorro Estudiantil vigente.</p>
+        </details>
+        <details>
+          <summary>¿Cómo funciona el Programa de Ahorro para Postgrado?</summary>
+          <p>Parte de los depósitos programados se acumulan en una subcuenta con una tasa preferencial, disponible al finalizar el grado.</p>
+        </details>
+        <details>
+          <summary>¿La beca cubre el 100% de la matrícula?</summary>
+          <p>La cobertura depende del promedio académico y la disponibilidad del fondo; se notifica el porcentaje aprobado antes de cada cuatrimestre.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="producto" id="sucursales">
+      <h2>Sucursales</h2>
+      <p>Encuéntranos cerca de los recintos y centros regionales de la UASD.</p>
+      <table class="tabla-datos">
+        <thead>
+          <tr>
+            <th>Sede</th>
+            <th>Ubicación</th>
+            <th>Horario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sucursal Ciudad Universitaria</td>
+            <td>Av. Alma Máter, Santo Domingo</td>
+            <td>Lunes a viernes, 8:00am - 5:00pm</td>
+          </tr>
+          <tr>
+            <td>Sucursal Recinto Santiago</td>
+            <td>Centro Universitario Regional del Norte</td>
+            <td>Lunes a viernes, 8:00am - 4:00pm</td>
+          </tr>
+          <tr>
+            <td>Sucursal San Juan de la Maguana</td>
+            <td>Centro Universitario Regional San Juan</td>
+            <td>Lunes a sábado, 8:00am - 1:00pm</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="producto" id="contacto">
+      <h2>Contacto</h2>
+      <p>Escríbenos y un asesor de Banco Uastiano te contactará en menos de 24 horas.</p>
+      <form class="formulario-contacto" onsubmit="return false;">
+        <label>
+          Nombre completo
+          <input type="text" placeholder="Tu nombre">
+        </label>
+        <label>
+          Correo institucional
+          <input type="email" placeholder="tunombre@uasd.edu.do">
+        </label>
+        <label class="campo-ancho">
+          Asunto
+          <input type="text" placeholder="¿En qué te podemos ayudar?">
+        </label>
+        <label class="campo-ancho">
+          Mensaje
+          <textarea rows="4" placeholder="Escribe tu mensaje..."></textarea>
+        </label>
+        <button type="submit">Enviar mensaje</button>
+      </form>
+    </section>
+
+  </main>
+
+  <div class="footer-ayuda">
+    <h3>¿Necesitas ayuda?</h3>
+    <p>Estamos disponibles en todos los canales para la comunidad UASD.</p>
+    <a href="#contacto" class="boton boton-relleno">Conversemos</a>
+  </div>
+
+  <footer class="principal">
+    <div class="footer-columnas">
+      <div>
+        <h4>Productos</h4>
+        <ul>
+          <li><a href="#cuentas">Cuentas</a></li>
+          <li><a href="#tarjetas">Tarjetas</a></li>
+          <li><a href="#prestamos">Préstamos</a></li>
+          <li><a href="#becas">Becas y Ayuda Estudiantil</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Servicios en Línea</h4>
+        <ul>
+          <li><a href="#contacto">Solicitar cuenta</a></li>
+          <li><a href="#prestamos">Solicitar préstamo</a></li>
+          <li><a href="#sucursales">Ubicar sucursal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Somos Uastiano</h4>
+        <ul>
+          <li><a href="#">Historia del banco</a></li>
+          <li><a href="#">Alianza con la UASD</a></li>
+          <li><a href="#">Trabaja con nosotros</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Atención al Usuario</h4>
+        <ul>
+          <li><a href="#contacto">Preguntas frecuentes</a></li>
+          <li><a href="#contacto">Formulario de reclamaciones</a></li>
+          <li><a href="#contacto">Políticas de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-final">
+      <p>&copy; 2026 Banco Uastiano. Proyecto académico creado para la Práctica 3 — Arquitectura, menús y funcionalidades con CSS. No es una institución financiera real.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
