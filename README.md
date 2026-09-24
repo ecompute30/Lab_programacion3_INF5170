@@ -24,10 +24,10 @@
   - Crear una página web que muestre 102 Etiquetas HTML
 - ✅ **Práctica 3 — HTML5 / CSS**
   - Página Web Banco Uastiano — Arquitectura, menús y funcionalidades CSS (inspirada en BHD, Banco Caribe y Banesco; colores e identidad de la UASD)
+- ✅ **Práctica 4 — Menú Dinámico con Estructuras de Datos**
+  - Crear menú dinámico usando JSON, XML o GraphQL
 ---
  
-- ⏳ **Práctica 4 — Menú Dinámico con Estructuras de Datos**
-  - Crear menú dinámico usando JSON, XML o GraphQL
 - ⏳ **Práctica 5 — Pruebas Modernas para Aplicaciones Web y APIs**
   - ⏳ **5.1** Pruebas Automatizadas de UI y API con Playwright o Cypress
   - ⏳ **5.2** Pruebas BDD con Gherkin
