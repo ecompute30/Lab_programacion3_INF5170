@@ -22,8 +22,8 @@
 - ✅ **Práctica 2 — HTML Continuación**
   - Crear página HTML con Biografía (foto incluida) y Horario de Clases en tabla
   - Crear una página web que muestre 102 Etiquetas HTML
-- ⏳ **Práctica 3 — HTML5 / CSS**
-  - Página Web Banco XX — Arquitectura, menús y funcionalidades CSS (referencia: Banco de Reservas)
+- ✅ **Práctica 3 — HTML5 / CSS**
+  - Página Web Banco Uastiano — Arquitectura, menús y funcionalidades CSS (inspirada en BHD, Banco Caribe y Banesco; colores e identidad de la UASD)
 ---
  
 - ⏳ **Práctica 4 — Menú Dinámico con Estructuras de Datos**
