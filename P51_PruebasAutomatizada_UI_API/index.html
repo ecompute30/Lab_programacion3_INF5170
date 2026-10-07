@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 5.1 — Reporte de Pruebas Automatizadas (UI + API)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="portada">
+    <div class="marca">
+      <img src="https://uasd.edu.do/wp-content/themes/pagina/img/logo_uasd_pie.svg" alt="Universidad Autónoma de Santo Domingo">
+      <span>Lab. Programación III</span>
+    </div>
+    <h1>Práctica 5.1 — Pruebas Automatizadas de UI y API</h1>
+    <p>
+      Suite de pruebas end-to-end con <strong>Playwright + TypeScript</strong> sobre el
+      <strong>Menú Dinámico Uastiano</strong> (Práctica 4, Vue 3) y sobre la API pública
+      <strong>JSONPlaceholder</strong>. Esta página documenta el objetivo, los casos de
+      prueba, los resultados y la evidencia de ejecución.
+    </p>
+  </header>
+
+  <nav class="indice">
+    <ul>
+      <li><a href="#resumen">Resumen</a></li>
+      <li><a href="#app-bajo-prueba">Aplicación bajo prueba</a></li>
+      <li><a href="#casos-ui">Casos UI</a></li>
+      <li><a href="#casos-api">Casos API</a></li>
+      <li><a href="#evidencia">Evidencia</a></li>
+      <li><a href="#hallazgos">Hallazgos</a></li>
+      <li><a href="#reproducir">Cómo reproducir</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="resumen">
+      <h2>Resumen de ejecución</h2>
+      <div class="resumen-grid">
+        <div class="tarjeta-resumen">
+          <div class="valor ok">10 / 10</div>
+          <div class="etiqueta">Pruebas aprobadas</div>
+        </div>
+        <div class="tarjeta-resumen">
+          <div class="valor">6</div>
+          <div class="etiqueta">Casos de UI (Playwright + Chromium)</div>
+        </div>
+        <div class="tarjeta-resumen">
+          <div class="valor">4</div>
+          <div class="etiqueta">Casos de API (JSONPlaceholder)</div>
+        </div>
+        <div class="tarjeta-resumen">
+          <div class="valor">4.6s</div>
+          <div class="etiqueta">Tiempo total de ejecución</div>
+        </div>
+      </div>
+      <p style="margin-top:1rem">
+        Herramienta elegida: <strong>Playwright</strong> (sobre Cypress), porque permite
+        combinar en un mismo framework pruebas de navegador y pruebas de API (fixture
+        <code>request</code>), genera automáticamente capturas de pantalla y un reporte
+        HTML interactivo con trazas de cada ejecución.
+      </p>
+      <a class="boton" href="playwright-report/index.html">Ver reporte interactivo de Playwright</a>
+    </section>
+
+    <section id="app-bajo-prueba">
+      <h2>Aplicación y API bajo prueba</h2>
+      <table class="tabla-casos">
+        <tbody>
+          <tr>
+            <th>UI</th>
+            <td>
+              Menú Dinámico Uastiano (Práctica 4 — Vue 3 + TypeScript)<br>
+              <a href="https://ecompute30.github.io/Lab_programacion3_INF5170/P4_MenuDinamico_Vue/dist/" target="_blank" rel="noopener noreferrer">
+                https://ecompute30.github.io/Lab_programacion3_INF5170/P4_MenuDinamico_Vue/dist/
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th>API</th>
+            <td>
+              JSONPlaceholder — API pública de prueba, sin autenticación<br>
+              <a href="https://jsonplaceholder.typicode.com" target="_blank" rel="noopener noreferrer">https://jsonplaceholder.typicode.com</a>
+              <p style="margin:0.5rem 0 0; font-size:0.85rem; color:#4a5568">
+                Nota: la guía sugería la Countries API (<code>restcountries.com</code>), pero su versión v3.1
+                está deprecada (ahora exige cabecera <code>Authorization: Bearer</code> y cambia la forma del
+                JSON de respuesta). Se optó por JSONPlaceholder por ser pública, estable y sin autenticación,
+                evitando que la suite falle por causas ajenas al código bajo prueba.
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="casos-ui">
+      <h2>Casos de prueba de UI</h2>
+      <table class="tabla-casos">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Caso</th>
+            <th>Qué valida</th>
+            <th>Resultado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Carga inicial de la página</td>
+            <td>Título, logo de la UASD y las 5 opciones del menú principal son visibles.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Navegación a una opción principal</td>
+            <td>
+              Al hacer clic en "Inicio" el panel de contenido muestra el título y la ruta
+              <code>/inicio</code>, y la URL del navegador no cambia (navegación del lado del cliente).
+            </td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Navegación a una opción de submenú</td>
+            <td>El submenú "Cuentas" se despliega al pasar el mouse y al seleccionar "Cuenta de Ahorro Estudiantil" se actualiza el contenido.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Formulario: agregar opción válida</td>
+            <td>Enviar el formulario con nombre y enlace válidos agrega la opción al menú de inmediato.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Formulario: validación de enlace inválido</td>
+            <td>Un enlace con esquema <code>javascript:</code> es rechazado con un mensaje de error y no se agrega al menú.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Comportamiento responsivo</td>
+            <td>En viewport móvil (390×844) el menú se oculta tras un botón de hamburguesa y se despliega al pulsarlo.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="casos-api">
+      <h2>Casos de prueba de API</h2>
+      <table class="tabla-casos">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Endpoint</th>
+            <th>Código esperado</th>
+            <th>Qué valida</th>
+            <th>Resultado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><code>GET /posts/1</code></td>
+            <td>200</td>
+            <td>Content-Type JSON y estructura del post (<code>id</code>, <code>userId</code>, <code>title</code>, <code>body</code>).</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><code>GET /posts/999999</code></td>
+            <td>404</td>
+            <td>Recurso inexistente responde con el código correcto y un cuerpo JSON vacío.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><code>GET /posts?userId=1</code></td>
+            <td>200</td>
+            <td>La respuesta es un arreglo JSON y todos los elementos pertenecen al <code>userId</code> solicitado.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><code>POST /posts</code></td>
+            <td>201</td>
+            <td>El recurso creado se devuelve con los mismos datos enviados y un <code>id</code> asignado.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="evidencia">
+      <h2>Evidencia de ejecución</h2>
+      <p>Capturas tomadas automáticamente por Playwright al finalizar cada prueba de UI, más una captura del panel del reporte interactivo:</p>
+      <div class="galeria">
+        <figure>
+          <img src="capturas/01-carga-inicial.png" alt="Carga inicial del Menú Dinámico Uastiano">
+          <figcaption>1. Carga inicial</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/02-navegacion-inicio.png" alt="Panel de contenido tras seleccionar Inicio">
+          <figcaption>2. Navegación — Inicio</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/03-submenu-cuentas.png" alt="Submenú de Cuentas desplegado">
+          <figcaption>3. Submenú — Cuentas</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/04-agregar-opcion.png" alt="Nueva opción agregada al menú">
+          <figcaption>4. Agregar opción válida</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/05-validacion-enlace-invalido.png" alt="Mensaje de error por enlace inválido">
+          <figcaption>5. Validación de enlace inválido</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/06-menu-movil.png" alt="Menú desplegado en viewport móvil">
+          <figcaption>6. Menú móvil desplegado</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/07-playwright-report.png" alt="Panel del reporte HTML de Playwright con 10 de 10 pruebas aprobadas">
+          <figcaption>7. Reporte Playwright — 10/10 aprobadas</figcaption>
+        </figure>
+      </div>
+
+      <p style="margin-top:1.3rem">Salida de consola de la ejecución completa (<code>npx playwright test</code>):</p>
+      <pre class="consola">Running 10 tests using 6 workers
+
+  ✓ 1 [ui-chromium] Carga inicial y estructura del menú › la página carga con el encabezado, el logo de la UASD y las opciones principales del menú (1.5s)
+  ✓ 2 [ui-chromium] Navegación entre opciones del menú › un submenú se despliega al pasar el mouse y navega a la opción anidada (2.1s)
+  ✓ 3 [ui-chromium] Formulario para agregar opciones de menú › agregar una opción válida la refleja de inmediato en el menú (1.9s)
+  ✓ 4 [ui-chromium] Navegación entre opciones del menú › seleccionar una opción de nivel principal actualiza el panel de contenido sin recargar la página (2.1s)
+  ✓ 5 [ui-chromium] Formulario para agregar opciones de menú › rechaza un enlace no válido (esquema javascript:) y no agrega la opción (2.1s)
+  ✓ 6 [ui-chromium] Comportamiento responsivo › en viewport móvil el menú se oculta tras un botón de hamburguesa y se puede desplegar (1.9s)
+  ✓ 7 [api] GET /posts/:id › responde 200 y devuelve un post en formato JSON con los campos esperados (285ms)
+  ✓ 8 [api] POST /posts › crea un recurso y responde 201 devolviendo los datos enviados (361ms)
+  ✓ 9 [api] GET /posts/:id › responde 404 al solicitar un recurso inexistente (317ms)
+  ✓ 10 [api] GET /posts?userId= › responde 200 y devuelve solo los posts del usuario solicitado (295ms)
+
+  10 passed (4.6s)</pre>
+    </section>
+
+    <section id="hallazgos">
+      <h2>Hallazgos</h2>
+      <div class="hallazgo">
+        <h3>Mensaje de error de validación duplicado</h3>
+        <p>
+          Al enviar un enlace inválido desde el formulario "Agregar opción", el mensaje de error
+          (<code>mensajeError</code>) es un estado reactivo compartido entre el formulario de alta/edición
+          y el panel de importación de JSON. Esto provoca que el mismo mensaje aparezca duplicado en
+          pantalla (dos elementos <code>role="alert"</code> con el mismo texto) aunque el usuario solo
+          interactuó con uno de los dos paneles. No afecta la validación en sí — la opción inválida sigue
+          siendo correctamente rechazada — pero es una mejora de UX pendiente para una futura iteración
+          (separar el estado de error por componente, o mostrarlo en un único lugar común).
+        </p>
+      </div>
+    </section>
+
+    <section id="reproducir">
+      <h2>Cómo reproducir esta suite</h2>
+      <pre class="consola">git clone https://github.com/ecompute30/Lab_programacion3_INF5170.git
+cd Lab_programacion3_INF5170/P51_PruebasAutomatizada_UI_API
+npm install
+npx playwright install chromium
+npx playwright test        # ejecuta las 10 pruebas (UI + API)
+npx playwright show-report # abre el reporte HTML interactivo</pre>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p>&copy; 2026 Edwin Alberto Roman Seberino. Práctica 5.1 — Pruebas Automatizadas de UI y API con Playwright.</p>
+  </footer>
+
+</body>
+</html>
