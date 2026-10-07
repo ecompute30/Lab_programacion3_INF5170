@@ -30,7 +30,7 @@
  
 - ⏳ **Práctica 5 — Pruebas Modernas para Aplicaciones Web y APIs**
   - ✅ **5.1** Pruebas Automatizadas de UI y API con Playwright — UI: Menú Dinámico Uastiano (Práctica 4) · API: JSONPlaceholder — [Ver reporte](https://ecompute30.github.io/Lab_programacion3_INF5170/P51_PruebasAutomatizada_UI_API/) · [Código fuente](P51_PruebasAutomatizada_UI_API/)
-  - ⏳ **5.2** Pruebas BDD con Gherkin
+  - ✅ **5.2** Pruebas BDD con Gherkin — 7 escenarios (playwright-bdd) sobre el Menú Dinámico Uastiano — [Ver reporte](https://ecompute30.github.io/Lab_programacion3_INF5170/P52_PruebasBDD_Gherkin/) · [Código fuente](P52_PruebasBDD_Gherkin/)
   - ⏳ **5.3** Pruebas de Performance con JMeter, k6 o Postman
 - ⏳ **Práctica 6 — XML / JSON**
   - Resumen de XML y su uso con ejemplo
@@ -53,4 +53,4 @@
 - ⏳ **Evaluación General** *(Cuestionario)*
 ---
  
-*Última actualización: Octubre 2026 — Completado hasta Práctica 5.1*
+*Última actualización: Octubre 2026 — Completado hasta Práctica 5.2*

@@ -1,0 +1,14 @@
+
+Running 9 tests using 6 workers
+
+  ✓  1 [chromium] › .features-gen\features\menu-dinamico.feature.spec.js:10:7 › Gestión de opciones del Menú Dinámico Uastiano › Agregar una nueva opción de menú válida (1.2s)
+  ✓  2 [chromium] › .features-gen\features\menu-dinamico.feature.spec.js:16:7 › Gestión de opciones del Menú Dinámico Uastiano › Eliminar una opción existente del menú (1.3s)
+  ✓  3 [chromium] › .features-gen\features\menu-dinamico.feature.spec.js:27:7 › Gestión de opciones del Menú Dinámico Uastiano › Importar una estructura de menú válida en formato JSON (1.3s)
+  ✓  4 [chromium] › .features-gen\features\menu-dinamico.feature.spec.js:42:9 › Gestión de opciones del Menú Dinámico Uastiano › Rechazar un enlace no válido al agregar una opción › Ejemplos: #2 (1.6s)
+  ✓  6 [chromium] › .features-gen\features\menu-dinamico.feature.spec.js:35:9 › Gestión de opciones del Menú Dinámico Uastiano › Rechazar un enlace no válido al agregar una opción › Ejemplos: #1 (1.4s)
+  ✓  5 [chromium] › .features-gen\features\menu-dinamico.feature.spec.js:21:7 › Gestión de opciones del Menú Dinámico Uastiano › Seleccionar una opción actualiza el panel de contenido sin recargar la página (1.9s)
+  ✓  7 [chromium] › .features-gen\features\menu-dinamico.feature.spec.js:49:9 › Gestión de opciones del Menú Dinámico Uastiano › Rechazar un enlace no válido al agregar una opción › Ejemplos: #3 (1.4s)
+  ✓  8 [chromium] › .features-gen\features\menu-dinamico.feature.spec.js:58:7 › Gestión de opciones del Menú Dinámico Uastiano › Rechazar la importación de un texto que no es JSON válido (1.1s)
+  ✓  9 [chromium] › .features-gen\features\menu-dinamico.feature.spec.js:65:7 › Gestión de opciones del Menú Dinámico Uastiano › Rechazar la importación de un JSON con identificadores duplicados (1.4s)
+
+  9 passed (5.5s)

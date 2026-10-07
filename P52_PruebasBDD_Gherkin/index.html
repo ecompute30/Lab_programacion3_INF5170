@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 5.2 — Pruebas BDD con Gherkin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="portada">
+    <div class="marca">
+      <img src="https://uasd.edu.do/wp-content/themes/pagina/img/logo_uasd_pie.svg" alt="Universidad Autónoma de Santo Domingo">
+      <span>Lab. Programación III</span>
+    </div>
+    <h1>Práctica 5.2 — Pruebas BDD con Gherkin</h1>
+    <p>
+      Escenarios de comportamiento (BDD) escritos en <strong>Gherkin</strong> sobre la gestión
+      de opciones del <strong>Menú Dinámico Uastiano</strong> (Práctica 4, Vue 3), ejecutados
+      automáticamente con <strong>playwright-bdd</strong>.
+    </p>
+  </header>
+
+  <nav class="indice">
+    <ul>
+      <li><a href="#resumen">Resumen</a></li>
+      <li><a href="#funcionalidad">Funcionalidad principal</a></li>
+      <li><a href="#feature">Archivo .feature</a></li>
+      <li><a href="#escenarios">Escenarios</a></li>
+      <li><a href="#evidencia">Evidencia</a></li>
+      <li><a href="#reproducir">Cómo reproducir</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="resumen">
+      <h2>Resumen de ejecución</h2>
+      <div class="resumen-grid">
+        <div class="tarjeta-resumen">
+          <div class="valor ok">9 / 9</div>
+          <div class="etiqueta">Ejecuciones aprobadas</div>
+        </div>
+        <div class="tarjeta-resumen">
+          <div class="valor">7</div>
+          <div class="etiqueta">Escenarios Gherkin (uno con 3 ejemplos)</div>
+        </div>
+        <div class="tarjeta-resumen">
+          <div class="valor">4 / 3</div>
+          <div class="etiqueta">Casos de éxito / casos de error</div>
+        </div>
+        <div class="tarjeta-resumen">
+          <div class="valor">5.5s</div>
+          <div class="etiqueta">Tiempo total de ejecución</div>
+        </div>
+      </div>
+      <p style="margin-top:1rem">
+        Herramienta elegida: <strong>playwright-bdd</strong>, que convierte archivos
+        <code>.feature</code> en tests nativos de Playwright. Se reutiliza así todo lo ya
+        construido en la Práctica 5.1 (reportes HTML, capturas automáticas, trazas) pero
+        describiendo el comportamiento esperado en lenguaje natural (<code>Given/When/Then</code>)
+        antes de automatizarlo, tal como pide la metodología BDD.
+      </p>
+      <a class="boton" href="playwright-report/index.html">Ver reporte interactivo de Playwright</a>
+    </section>
+
+    <section id="funcionalidad">
+      <h2>Funcionalidad principal bajo prueba</h2>
+      <p>
+        <strong>Gestión de opciones del Menú Dinámico Uastiano</strong>: el administrador del
+        sitio puede agregar, eliminar e importar opciones del menú de navegación sin modificar
+        el código fuente, y esos cambios deben reflejarse de inmediato en la interfaz.
+      </p>
+      <table class="tabla-casos">
+        <tbody>
+          <tr>
+            <th>Aplicación bajo prueba</th>
+            <td>
+              Menú Dinámico Uastiano (Práctica 4 — Vue 3 + TypeScript)<br>
+              <a href="https://ecompute30.github.io/Lab_programacion3_INF5170/P4_MenuDinamico_Vue/dist/" target="_blank" rel="noopener noreferrer">
+                https://ecompute30.github.io/Lab_programacion3_INF5170/P4_MenuDinamico_Vue/dist/
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th>Herramienta BDD</th>
+            <td><a href="https://github.com/vitalets/playwright-bdd" target="_blank" rel="noopener noreferrer">playwright-bdd</a> sobre Playwright + TypeScript</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="feature">
+      <h2>Archivo <code>features/menu-dinamico.feature</code></h2>
+      <p>Los escenarios se escribieron en español usando la directiva <code># language: es</code> de Gherkin.</p>
+      <pre class="gherkin"># language: es
+Característica: Gestión de opciones del Menú Dinámico Uastiano
+  Como administrador del sitio
+  Quiero agregar, eliminar e importar opciones del menú de navegación
+  Para mantener actualizada la estructura del sitio sin modificar el código fuente
+
+  Antecedentes:
+    Dado que el usuario está en la página principal del Menú Dinámico Uastiano
+
+  Escenario: Agregar una nueva opción de menú válida
+    Cuando completa el formulario de alta con el nombre "Preguntas Frecuentes" y el enlace "/faq"
+    Y pulsa el botón "Agregar opción"
+    Entonces la opción "Preguntas Frecuentes" aparece visible en el menú principal
+
+  Escenario: Eliminar una opción existente del menú
+    Cuando elimina la opción "Tarjetas" del menú
+    Entonces la opción "Tarjetas" ya no aparece en el menú principal
+
+  Escenario: Seleccionar una opción actualiza el panel de contenido sin recargar la página
+    Cuando selecciona la opción "Inicio" del menú
+    Entonces el panel de contenido muestra el título "Inicio" y la ruta "/inicio"
+    Y la dirección del navegador no cambia
+
+  Escenario: Importar una estructura de menú válida en formato JSON
+    Cuando pega en el panel de importación un JSON válido con una única opción llamada "Noticias"
+    Y pulsa el botón "Importar texto"
+    Entonces el menú se reemplaza y muestra únicamente la opción "Noticias"
+
+  Esquema del escenario: Rechazar un enlace no válido al agregar una opción
+    Cuando completa el formulario de alta con el nombre "&lt;nombre&gt;" y el enlace "&lt;enlace&gt;"
+    Y pulsa el botón "Agregar opción"
+    Entonces se muestra en el formulario un mensaje de error que contiene "El enlace debe ser una ruta interna"
+    Y la opción "&lt;nombre&gt;" no aparece en el menú
+
+    Ejemplos:
+      | nombre                   | enlace                    |
+      | Enlace malicioso         | javascript:alert(1)       |
+      | Enlace con otro esquema  | data:text/html,hola       |
+      | Enlace sin barra inicial | sin-barra-inicial         |
+
+  Escenario: Rechazar la importación de un texto que no es JSON válido
+    Cuando pega en el panel de importación el texto "esto no es json {{{"
+    Y pulsa el botón "Importar texto"
+    Entonces se muestra en el panel de importación un mensaje de error que contiene "no contiene un JSON válido"
+    Y la opción "Inicio" sigue apareciendo en el menú
+
+  Escenario: Rechazar la importación de un JSON con identificadores duplicados
+    Cuando pega en el panel de importación un JSON con dos opciones que comparten el mismo id
+    Y pulsa el botón "Importar texto"
+    Entonces se muestra en el panel de importación un mensaje de error que contiene "identificadores"
+    Y la opción "Inicio" sigue apareciendo en el menú</pre>
+    </section>
+
+    <section id="escenarios">
+      <h2>¿Qué valida cada escenario?</h2>
+      <table class="tabla-casos">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Escenario</th>
+            <th>Tipo</th>
+            <th>Qué valida</th>
+            <th>Resultado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Agregar una nueva opción de menú válida</td>
+            <td><span class="badge badge-exito">Éxito</span></td>
+            <td>El flujo principal: completar nombre + enlace válidos y confirmar que la opción se agrega de inmediato al menú visible.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Eliminar una opción existente del menú</td>
+            <td><span class="badge badge-exito">Éxito</span></td>
+            <td>Que el botón de eliminar quite la opción del menú sin recargar la página.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Seleccionar una opción actualiza el panel de contenido</td>
+            <td><span class="badge badge-exito">Éxito</span></td>
+            <td>La navegación por el menú es del lado del cliente: cambia el contenido mostrado y la URL del navegador permanece igual.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Importar una estructura de menú válida en JSON</td>
+            <td><span class="badge badge-exito">Éxito</span></td>
+            <td>Un JSON bien formado reemplaza por completo la estructura del menú.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Rechazar un enlace no válido (esquema outline, 3 ejemplos)</td>
+            <td><span class="badge badge-error">Error</span></td>
+            <td>Tres variantes de enlaces inválidos (<code>javascript:</code>, <code>data:</code>, sin barra inicial) son rechazadas con el mismo mensaje de validación, y la opción nunca se agrega.</td>
+            <td class="estado-ok">Aprobado (×3)</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Rechazar un texto que no es JSON válido</td>
+            <td><span class="badge badge-error">Error</span></td>
+            <td>Pegar un texto mal formado en el importador muestra un error de parseo y no altera el menú existente.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Rechazar un JSON con identificadores duplicados</td>
+            <td><span class="badge badge-error">Error</span></td>
+            <td>Un JSON estructuralmente válido pero con <code>id</code> repetidos es rechazado por la validación de unicidad, sin alterar el menú existente.</td>
+            <td class="estado-ok">Aprobado</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="evidencia">
+      <h2>Evidencia de ejecución</h2>
+      <p>Capturas tomadas automáticamente por Playwright al finalizar cada escenario:</p>
+      <div class="galeria">
+        <figure>
+          <img src="capturas/01-agregar-opcion-valida.png" alt="Opción agregada al menú">
+          <figcaption>1. Agregar opción válida</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/02-eliminar-opcion.png" alt="Opción eliminada del menú">
+          <figcaption>2. Eliminar opción</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/03-navegacion-sin-recarga.png" alt="Panel de contenido actualizado">
+          <figcaption>3. Navegación sin recarga</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/04-importar-json-valido.png" alt="Menú reemplazado tras importar JSON">
+          <figcaption>4. Importar JSON válido</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/05-rechazo-enlace-invalido.png" alt="Mensaje de error por enlace inválido">
+          <figcaption>5. Rechazo de enlace inválido</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/06-rechazo-json-invalido.png" alt="Mensaje de error por JSON mal formado">
+          <figcaption>6. Rechazo de JSON inválido</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/07-rechazo-ids-duplicados.png" alt="Mensaje de error por ids duplicados">
+          <figcaption>7. Rechazo de ids duplicados</figcaption>
+        </figure>
+        <figure>
+          <img src="capturas/08-playwright-report.png" alt="Reporte Playwright con 9 de 9 escenarios aprobados">
+          <figcaption>8. Reporte Playwright — 9/9 aprobados</figcaption>
+        </figure>
+      </div>
+
+      <p style="margin-top:1.3rem">Salida de consola de la ejecución completa (<code>npm test</code>, que corre <code>bddgen</code> + <code>playwright test</code>):</p>
+      <pre class="consola">Running 9 tests using 6 workers
+
+  ✓ Agregar una nueva opción de menú válida (1.2s)
+  ✓ Eliminar una opción existente del menú (1.3s)
+  ✓ Importar una estructura de menú válida en formato JSON (1.3s)
+  ✓ Rechazar un enlace no válido al agregar una opción › Ejemplos: #1 (1.4s)
+  ✓ Rechazar un enlace no válido al agregar una opción › Ejemplos: #2 (1.6s)
+  ✓ Seleccionar una opción actualiza el panel de contenido sin recargar la página (1.9s)
+  ✓ Rechazar un enlace no válido al agregar una opción › Ejemplos: #3 (1.4s)
+  ✓ Rechazar la importación de un texto que no es JSON válido (1.1s)
+  ✓ Rechazar la importación de un JSON con identificadores duplicados (1.4s)
+
+  9 passed (5.5s)</pre>
+    </section>
+
+    <section id="reproducir">
+      <h2>Cómo reproducir esta suite</h2>
+      <pre class="consola">git clone https://github.com/ecompute30/Lab_programacion3_INF5170.git
+cd Lab_programacion3_INF5170/P52_PruebasBDD_Gherkin
+npm install
+npx playwright install chromium
+npm test            # genera los tests desde los .feature y los ejecuta
+npm run report       # abre el reporte HTML interactivo</pre>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p>&copy; 2026 Edwin Alberto Roman Seberino. Práctica 5.2 — Pruebas BDD con Gherkin (playwright-bdd).</p>
+  </footer>
+
+</body>
+</html>
