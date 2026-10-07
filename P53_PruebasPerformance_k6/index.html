@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 5.3 — Pruebas de Performance con k6</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="portada">
+    <div class="marca">
+      <img src="https://uasd.edu.do/wp-content/themes/pagina/img/logo_uasd_pie.svg" alt="Universidad Autónoma de Santo Domingo">
+      <span>Lab. Programación III</span>
+    </div>
+    <h1>Práctica 5.3 — Pruebas de Performance con k6</h1>
+    <p>
+      Dos pruebas de rendimiento con <strong>k6</strong> sobre la
+      <strong><a href="https://rickandmortyapi.com/" target="_blank" rel="noopener noreferrer">Rick and Morty API</a></strong>
+      (API pública, sin autenticación): una de <strong>carga moderada</strong> dentro de límites
+      seguros, y una de <strong>estrés</strong> que explora deliberadamente hasta dónde aguanta
+      la API antes de empezar a bloquear solicitudes.
+    </p>
+  </header>
+
+  <nav class="indice">
+    <ul>
+      <li><a href="#resumen">Resumen</a></li>
+      <li><a href="#plan">Plan de prueba</a></li>
+      <li><a href="#carga-moderada">Carga moderada</a></li>
+      <li><a href="#prueba-estres">Prueba de estrés</a></li>
+      <li><a href="#explicacion">Explicación de resultados</a></li>
+      <li><a href="#evidencia">Evidencia</a></li>
+      <li><a href="#reproducir">Cómo reproducir</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="resumen">
+      <h2>Resumen</h2>
+      <div class="resumen-grid">
+        <div class="tarjeta-resumen">
+          <div class="valor ok">0%</div>
+          <div class="etiqueta">Error rate — carga moderada (156 solicitudes)</div>
+        </div>
+        <div class="tarjeta-resumen">
+          <div class="valor">305ms</div>
+          <div class="etiqueta">p(95) http_req_duration — carga moderada</div>
+        </div>
+        <div class="tarjeta-resumen">
+          <div class="valor alerta">97%</div>
+          <div class="etiqueta">Error rate pico — prueba de estrés (8 VUs)</div>
+        </div>
+        <div class="tarjeta-resumen">
+          <div class="valor">~5-6</div>
+          <div class="etiqueta">VUs concurrentes donde empieza el rate-limit</div>
+        </div>
+      </div>
+      <p style="margin-top:1rem">
+        Herramienta elegida: <strong><a href="https://k6.io/" target="_blank" rel="noopener noreferrer">k6</a></strong>
+        (Grafana Labs), por su enfoque "performance test as code" en JavaScript, sus métricas
+        integradas (<code>http_req_duration</code>, <code>http_req_failed</code>, <code>vus</code>...)
+        y su reporte HTML (<a href="https://github.com/benc-uk/k6-reporter" target="_blank" rel="noopener noreferrer">k6-reporter</a>).
+      </p>
+      <a class="boton" href="reportes/carga-moderada.html">Ver reporte k6 — Carga moderada</a>
+      <a class="boton" href="reportes/grafico-estres.png">Ver gráfico — Prueba de estrés</a>
+    </section>
+
+    <section id="plan">
+      <h2>Plan de prueba</h2>
+      <table class="tabla-casos">
+        <tbody>
+          <tr>
+            <th>Aplicación/API bajo prueba</th>
+            <td>
+              <a href="https://rickandmortyapi.com/" target="_blank" rel="noopener noreferrer">Rick and Morty API</a>
+              — <code>GET /api/character</code> (listado paginado), <code>GET /api/character/:id</code>
+              (recurso individual), <code>GET /api/character/999999</code> (caso negativo, debe dar 404)
+            </td>
+          </tr>
+          <tr>
+            <th>Prueba 1 — Carga moderada</th>
+            <td>
+              <code>scripts/carga-moderada.js</code> — <em>ramping-vus</em>: 0→2 VUs (10s), 2 VUs
+              sostenidos (15s), 2→3 VUs (10s), 3 VUs sostenidos (15s), 3→0 (10s). Pausa de 2s entre
+              iteraciones. Total ≈ 60s.
+            </td>
+          </tr>
+          <tr>
+            <th>Prueba 2 — Estrés / breakpoint</th>
+            <td>
+              <code>scripts/prueba-estres.js</code> — <em>ramping-vus</em> en escalones de 10s:
+              2 → 4 → 6 → 8 VUs y vuelta a 0. Sin pausas largas, para forzar concurrencia creciente
+              y encontrar el punto de quiebre. Total ≈ 90s.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="carga-moderada">
+      <h2>Resultados — Carga moderada</h2>
+      <p>Perfil de tráfico conservador (máx. 3 VUs), pensado para validar el comportamiento normal de la API.</p>
+      <table class="tabla-casos">
+        <thead>
+          <tr>
+            <th>Métrica</th>
+            <th>Resultado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Solicitudes totales (<code>http_reqs</code>)</td>
+            <td>156 (≈2.5 req/s)</td>
+          </tr>
+          <tr>
+            <td>Checks superados</td>
+            <td class="estado-ok">260 / 260 (100%)</td>
+          </tr>
+          <tr>
+            <td><code>http_req_failed</code></td>
+            <td class="estado-ok">0.00%</td>
+          </tr>
+          <tr>
+            <td><code>http_req_duration</code> — listado de personajes (avg / p95)</td>
+            <td>59.9 ms / 104.6 ms</td>
+          </tr>
+          <tr>
+            <td><code>http_req_duration</code> — personaje individual (avg / p95)</td>
+            <td>217.7 ms / 313.0 ms</td>
+          </tr>
+          <tr>
+            <td>Umbrales (<code>thresholds</code>) definidos</td>
+            <td class="estado-ok">Todos aprobados (p95&lt;800ms, p99&lt;1500ms, error rate&lt;1%)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:1rem">
+        <a href="reportes/carga-moderada.html">Reporte HTML completo (k6-reporter)</a> ·
+        <a href="reportes/carga-moderada.json">JSON del resumen</a> ·
+        <a href="reportes/carga-moderada-consola.txt">Salida de consola</a>
+      </p>
+    </section>
+
+    <section id="prueba-estres">
+      <h2>Resultados — Prueba de estrés (breakpoint)</h2>
+      <p>
+        Antes de esta prueba, un script de diagnóstico reveló que la Rick and Morty API está
+        protegida por Cloudflare y responde <code>HTTP 429</code> con el cuerpo
+        <code>{"error code: 1015"}</code> (rate limit) cuando detecta demasiadas solicitudes
+        concurrentes desde la misma IP. La prueba de estrés incrementa la concurrencia en
+        escalones para encontrar ese límite de forma controlada y medirlo.
+      </p>
+      <figure style="margin:1rem 0">
+        <img src="reportes/grafico-estres.png" alt="Gráfico de VUs vs. porcentaje de error a lo largo del tiempo" style="width:100%; border:1px solid var(--gris-borde); border-radius:8px;">
+      </figure>
+      <table class="tabla-casos">
+        <thead>
+          <tr>
+            <th>Ventana (5s)</th>
+            <th>VUs (prom.)</th>
+            <th>Solicitudes</th>
+            <th>Errores (≠200)</th>
+            <th>% error</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>t=0s</td><td>1.0</td><td>5</td><td>0</td><td class="estado-ok">0.0%</td></tr>
+          <tr><td>t=5s</td><td>2.0</td><td>9</td><td>0</td><td class="estado-ok">0.0%</td></tr>
+          <tr><td>t=10s</td><td>2.0</td><td>10</td><td>0</td><td class="estado-ok">0.0%</td></tr>
+          <tr><td>t=15s</td><td>2.0</td><td>10</td><td>0</td><td class="estado-ok">0.0%</td></tr>
+          <tr><td>t=20s</td><td>3.0</td><td>14</td><td>0</td><td class="estado-ok">0.0%</td></tr>
+          <tr><td>t=25s</td><td>4.0</td><td>18</td><td>0</td><td class="estado-ok">0.0%</td></tr>
+          <tr><td>t=30s</td><td>4.0</td><td>20</td><td>0</td><td class="estado-ok">0.0%</td></tr>
+          <tr><td>t=35s</td><td>4.0</td><td>20</td><td>0</td><td class="estado-ok">0.0%</td></tr>
+          <tr><td>t=40s</td><td>5.0</td><td>23</td><td>0</td><td class="estado-ok">0.0%</td></tr>
+          <tr><td>t=45s</td><td>6.0</td><td>27</td><td>0</td><td class="estado-ok">0.0%</td></tr>
+          <tr style="background-color:#fdecea"><td>t=50s</td><td>6.0</td><td>30</td><td>13</td><td style="color:var(--rojo-error); font-weight:bold">43.3%</td></tr>
+          <tr style="background-color:#fdecea"><td>t=55s</td><td>6.0</td><td>27</td><td>12</td><td style="color:var(--rojo-error); font-weight:bold">44.4%</td></tr>
+          <tr style="background-color:#fdecea"><td>t=60s</td><td>7.0</td><td>33</td><td>3</td><td style="color:var(--rojo-error); font-weight:bold">9.1%</td></tr>
+          <tr style="background-color:#fdecea"><td>t=65s</td><td>8.0</td><td>35</td><td>17</td><td style="color:var(--rojo-error); font-weight:bold">48.6%</td></tr>
+          <tr style="background-color:#fdecea"><td>t=70s</td><td>8.0</td><td>36</td><td>35</td><td style="color:var(--rojo-error); font-weight:bold">97.2%</td></tr>
+          <tr style="background-color:#fdecea"><td>t=75s</td><td>6.6</td><td>29</td><td>17</td><td style="color:var(--rojo-error); font-weight:bold">58.6%</td></tr>
+          <tr><td>t=80s</td><td>2.2</td><td>10</td><td>2</td><td style="color:var(--rojo-error); font-weight:bold">20.0%</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.85rem; color:#4a5568; margin-top:0.6rem">
+        Datos exactos calculados por <code>reportes/generar-grafico-estres.py</code> a partir del
+        NDJSON exportado por k6 (ventanas de 5 segundos).
+      </p>
+      <p style="margin-top:1rem">
+        <a href="reportes/prueba-estres-consola.txt">Salida de consola completa</a> ·
+        <a href="reportes/prueba-estres-metricas.json">Datos crudos (NDJSON exportado por k6)</a> ·
+        <a href="reportes/generar-grafico-estres.py">Script Python usado para generar el gráfico</a>
+      </p>
+    </section>
+
+    <section id="explicacion">
+      <h2>Explicación de los resultados</h2>
+      <p>
+        Con una carga moderada (2–3 usuarios virtuales, con pausas entre solicitudes) la API
+        respondió de forma consistente: 0% de errores, tiempos de respuesta bajos (p95 de
+        ~60–310ms según el endpoint) y los tres umbrales de calidad definidos se cumplieron
+        sin excepción. Esto demuestra que, dentro de un uso razonable, el servicio es estable.
+      </p>
+      <p>
+        Al incrementar deliberadamente la concurrencia en la prueba de estrés, el comportamiento
+        cambió de forma abrupta — no de manera gradual como ocurriría por saturación real del
+        servidor, sino con un salto brusco de 0% a ~40%+ de errores al cruzar aproximadamente
+        5–6 usuarios virtuales simultáneos. Esto es la firma típica de un <strong>rate limiter</strong>
+        (en este caso, de Cloudflare) y no de un cuello de botella de la aplicación: el servidor
+        no se "cae" ni se vuelve lento, simplemente empieza a rechazar solicitudes con
+        <code>HTTP 429</code> para protegerse.
+      </p>
+      <div class="hallazgo">
+        <h3>Hallazgo principal</h3>
+        <p>
+          La Rick and Morty API tolera de forma estable hasta ~4–5 solicitudes por segundo
+          sostenidas desde una misma IP; por encima de ese umbral, Cloudflare empieza a devolver
+          <code>429 (error code 1015)</code> con una cabecera <code>Retry-After</code>. Para un
+          consumidor real de esta API, la recomendación práctica sería implementar
+          <em>reintentos con backoff</em> respetando esa cabecera, y/o cachear resultados del
+          lado del cliente en vez de reconsultar el mismo recurso repetidamente.
+        </p>
+      </div>
+    </section>
+
+    <section id="evidencia">
+      <h2>Evidencia de ejecución</h2>
+      <div class="galeria">
+        <figure>
+          <img src="capturas/01-reporte-carga-moderada.png" alt="Dashboard de k6-reporter para la carga moderada, 0 solicitudes fallidas">
+          <figcaption>Dashboard k6-reporter — Carga moderada (0 fallos)</figcaption>
+        </figure>
+        <figure>
+          <img src="reportes/grafico-estres.png" alt="Gráfico de VUs vs porcentaje de error">
+          <figcaption>Curva de la prueba de estrés (VUs vs. % de error)</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="reproducir">
+      <h2>Cómo reproducir estas pruebas</h2>
+      <pre class="consola">git clone https://github.com/ecompute30/Lab_programacion3_INF5170.git
+cd Lab_programacion3_INF5170/P53_PruebasPerformance_k6
+
+# Instalar k6: https://k6.io/docs/getting-started/installation/
+k6 run scripts/carga-moderada.js
+k6 run --out json=reportes/prueba-estres-metricas.json scripts/prueba-estres.js
+
+# Regenerar el gráfico de la prueba de estrés (requiere matplotlib)
+pip install matplotlib
+python reportes/generar-grafico-estres.py</pre>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p>&copy; 2026 Edwin Alberto Roman Seberino. Práctica 5.3 — Pruebas de Performance con k6.</p>
+  </footer>
+
+</body>
+</html>
