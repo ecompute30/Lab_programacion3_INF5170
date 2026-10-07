@@ -1,0 +1,15 @@
+
+Running 10 tests using 6 workers
+
+  ✓   1 [ui-chromium] › tests\ui\menu-dinamico.spec.ts:9:7 › Carga inicial y estructura del menú › la página carga con el encabezado, el logo de la UASD y las opciones principales del menú (1.5s)
+  ✓   3 [ui-chromium] › tests\ui\menu-dinamico.spec.ts:54:7 › Formulario para agregar opciones de menú › agregar una opción válida la refleja de inmediato en el menú (1.9s)
+  ✓   6 [ui-chromium] › tests\ui\menu-dinamico.spec.ts:79:7 › Comportamiento responsivo › en viewport móvil el menú se oculta tras un botón de hamburguesa y se puede desplegar (1.9s)
+  ✓   2 [ui-chromium] › tests\ui\menu-dinamico.spec.ts:38:7 › Navegación entre opciones del menú › un submenú se despliega al pasar el mouse y navega a la opción anidada (2.1s)
+  ✓   5 [ui-chromium] › tests\ui\menu-dinamico.spec.ts:64:7 › Formulario para agregar opciones de menú › rechaza un enlace no válido (esquema javascript:) y no agrega la opción (2.1s)
+  ✓   4 [ui-chromium] › tests\ui\menu-dinamico.spec.ts:25:7 › Navegación entre opciones del menú › seleccionar una opción de nivel principal actualiza el panel de contenido sin recargar la página (2.1s)
+  ✓   7 [api] › tests\api\jsonplaceholder.spec.ts:12:7 › GET /posts/:id › responde 200 y devuelve un post en formato JSON con los campos esperados (285ms)
+  ✓   9 [api] › tests\api\jsonplaceholder.spec.ts:28:7 › GET /posts/:id › responde 404 al solicitar un recurso inexistente (317ms)
+  ✓  10 [api] › tests\api\jsonplaceholder.spec.ts:38:7 › GET /posts?userId= › responde 200 y devuelve solo los posts del usuario solicitado (295ms)
+  ✓   8 [api] › tests\api\jsonplaceholder.spec.ts:53:7 › POST /posts › crea un recurso y responde 201 devolviendo los datos enviados (361ms)
+
+  10 passed (4.6s)
