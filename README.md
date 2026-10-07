@@ -25,7 +25,7 @@
 - ✅ **Práctica 3 — HTML5 / CSS**
   - Página Web Banco Uastiano — Arquitectura, menús y funcionalidades CSS (inspirada en BHD, Banco Caribe y Banesco; colores e identidad de la UASD)
 - ✅ **Práctica 4 — Menú Dinámico con Estructuras de Datos**
-  - Crear menú dinámico usando JSON, XML o GraphQL
+  - Menú Dinámico Uastiano — Vue 3 + TypeScript, menú generado desde JSON con alta/edición/eliminación de opciones, importación de JSON y validaciones
 ---
  
 - ⏳ **Práctica 5 — Pruebas Modernas para Aplicaciones Web y APIs**
@@ -53,4 +53,4 @@
 - ⏳ **Evaluación General** *(Cuestionario)*
 ---
  
-*Última actualización: Septiembre 2026 — Completado hasta Práctica 3*
+*Última actualización: Octubre 2026 — Completado hasta Práctica 4*

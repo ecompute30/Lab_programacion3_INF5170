@@ -1,0 +1,62 @@
+{
+  "menu": [
+    {
+      "id": 1,
+      "nombre": "Inicio",
+      "enlace": "/inicio",
+      "icono": "🏠"
+    },
+    {
+      "id": 2,
+      "nombre": "Cuentas",
+      "enlace": "/cuentas",
+      "icono": "🏦",
+      "submenu": [
+        {
+          "id": 21,
+          "nombre": "Cuenta de Ahorro Estudiantil",
+          "enlace": "/cuentas/ahorro-estudiantil",
+          "icono": "🎓"
+        },
+        {
+          "id": 22,
+          "nombre": "Cuenta Programada de Matrícula",
+          "enlace": "/cuentas/programada-matricula",
+          "icono": "📅"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Tarjetas",
+      "enlace": "/tarjetas",
+      "icono": "💳",
+      "submenu": [
+        {
+          "id": 31,
+          "nombre": "Débito Uastiano Virtual",
+          "enlace": "/tarjetas/debito-virtual",
+          "icono": "📱"
+        },
+        {
+          "id": 32,
+          "nombre": "Crédito Egresado",
+          "enlace": "/tarjetas/credito-egresado",
+          "icono": "⭐"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "nombre": "Sobre Nosotros",
+      "enlace": "/sobre-nosotros",
+      "icono": "ℹ️"
+    },
+    {
+      "id": 5,
+      "nombre": "Contacto",
+      "enlace": "/contacto",
+      "icono": "☎️"
+    }
+  ]
+}
