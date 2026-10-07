@@ -1,0 +1,8 @@
+node_modules/
+.features-gen/
+/test-results/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# playwright-report/ se versiona intencionalmente como evidencia de ejecución
