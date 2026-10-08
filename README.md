@@ -28,10 +28,10 @@
   - Menú Dinámico Uastiano — Vue 3 + TypeScript, menú generado desde JSON con alta/edición/eliminación de opciones, importación de JSON y validaciones — [Ver en línea](https://ecompute30.github.io/Lab_programacion3_INF5170/P4_MenuDinamico_Vue/dist/) · [Código fuente](P4_MenuDinamico_Vue/)
 ---
  
-- ⏳ **Práctica 5 — Pruebas Modernas para Aplicaciones Web y APIs**
+- ✅ **Práctica 5 — Pruebas Modernas para Aplicaciones Web y APIs**
   - ✅ **5.1** Pruebas Automatizadas de UI y API con Playwright — UI: Menú Dinámico Uastiano (Práctica 4) · API: JSONPlaceholder — [Ver reporte](https://ecompute30.github.io/Lab_programacion3_INF5170/P51_PruebasAutomatizada_UI_API/) · [Código fuente](P51_PruebasAutomatizada_UI_API/)
   - ✅ **5.2** Pruebas BDD con Gherkin — 7 escenarios (playwright-bdd) sobre el Menú Dinámico Uastiano — [Ver reporte](https://ecompute30.github.io/Lab_programacion3_INF5170/P52_PruebasBDD_Gherkin/) · [Código fuente](P52_PruebasBDD_Gherkin/)
-  - ⏳ **5.3** Pruebas de Performance con JMeter, k6 o Postman
+  - ✅ **5.3** Pruebas de Performance con k6 — carga moderada + prueba de estrés sobre la Rick and Morty API — [Ver reporte](https://ecompute30.github.io/Lab_programacion3_INF5170/P53_PruebasPerformance_k6/) · [Código fuente](P53_PruebasPerformance_k6/)
 - ⏳ **Práctica 6 — XML / JSON**
   - Resumen de XML y su uso con ejemplo
   - Resumen de JSON y su uso con ejemplo
@@ -53,4 +53,4 @@
 - ⏳ **Evaluación General** *(Cuestionario)*
 ---
  
-*Última actualización: Octubre 2026 — Completado hasta Práctica 5.2*
+*Última actualización: Octubre 2026 — Completado hasta Práctica 5*

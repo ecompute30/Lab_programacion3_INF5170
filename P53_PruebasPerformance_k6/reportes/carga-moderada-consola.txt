@@ -1,0 +1,227 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: scripts/carga-moderada.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 3 max VUs, 1m30s max duration (incl. graceful stop):
+              * carga_moderada: Up to 3 looping VUs for 1m0s over 5 stages (gracefulRampDown: 30s, gracefulStop: 30s)
+
+
+running (0m01.0s), 0/3 VUs, 0 complete and 0 interrupted iterations
+carga_moderada   [   2% ] 0/3 VUs  0m01.0s/1m00.0s
+
+running (0m02.0s), 0/3 VUs, 0 complete and 0 interrupted iterations
+carga_moderada   [   3% ] 0/3 VUs  0m02.0s/1m00.0s
+
+running (0m03.0s), 0/3 VUs, 0 complete and 0 interrupted iterations
+carga_moderada   [   5% ] 0/3 VUs  0m03.0s/1m00.0s
+
+running (0m04.0s), 0/3 VUs, 0 complete and 0 interrupted iterations
+carga_moderada   [   7% ] 0/3 VUs  0m04.0s/1m00.0s
+
+running (0m05.0s), 0/3 VUs, 0 complete and 0 interrupted iterations
+carga_moderada   [   8% ] 0/3 VUs  0m05.0s/1m00.0s
+
+running (0m06.0s), 1/3 VUs, 0 complete and 0 interrupted iterations
+carga_moderada   [  10% ] 1/3 VUs  0m06.0s/1m00.0s
+
+running (0m07.0s), 1/3 VUs, 0 complete and 0 interrupted iterations
+carga_moderada   [  12% ] 1/3 VUs  0m07.0s/1m00.0s
+
+running (0m08.0s), 1/3 VUs, 1 complete and 0 interrupted iterations
+carga_moderada   [  13% ] 1/3 VUs  0m08.0s/1m00.0s
+
+running (0m09.0s), 1/3 VUs, 1 complete and 0 interrupted iterations
+carga_moderada   [  15% ] 1/3 VUs  0m09.0s/1m00.0s
+
+running (0m10.0s), 1/3 VUs, 1 complete and 0 interrupted iterations
+carga_moderada   [  17% ] 1/3 VUs  0m10.0s/1m00.0s
+
+running (0m11.0s), 2/3 VUs, 2 complete and 0 interrupted iterations
+carga_moderada   [  18% ] 2/3 VUs  0m11.0s/1m00.0s
+
+running (0m12.0s), 2/3 VUs, 2 complete and 0 interrupted iterations
+carga_moderada   [  20% ] 2/3 VUs  0m12.0s/1m00.0s
+
+running (0m13.0s), 2/3 VUs, 4 complete and 0 interrupted iterations
+carga_moderada   [  22% ] 2/3 VUs  0m13.0s/1m00.0s
+
+running (0m14.0s), 2/3 VUs, 4 complete and 0 interrupted iterations
+carga_moderada   [  23% ] 2/3 VUs  0m14.0s/1m00.0s
+
+running (0m15.0s), 2/3 VUs, 6 complete and 0 interrupted iterations
+carga_moderada   [  25% ] 2/3 VUs  0m15.0s/1m00.0s
+
+running (0m16.0s), 2/3 VUs, 6 complete and 0 interrupted iterations
+carga_moderada   [  27% ] 2/3 VUs  0m16.0s/1m00.0s
+
+running (0m17.0s), 2/3 VUs, 6 complete and 0 interrupted iterations
+carga_moderada   [  28% ] 2/3 VUs  0m17.0s/1m00.0s
+
+running (0m18.0s), 2/3 VUs, 8 complete and 0 interrupted iterations
+carga_moderada   [  30% ] 2/3 VUs  0m18.0s/1m00.0s
+
+running (0m19.0s), 2/3 VUs, 8 complete and 0 interrupted iterations
+carga_moderada   [  32% ] 2/3 VUs  0m19.0s/1m00.0s
+
+running (0m20.0s), 2/3 VUs, 10 complete and 0 interrupted iterations
+carga_moderada   [  33% ] 2/3 VUs  0m20.0s/1m00.0s
+
+running (0m21.0s), 2/3 VUs, 10 complete and 0 interrupted iterations
+carga_moderada   [  35% ] 2/3 VUs  0m21.0s/1m00.0s
+
+running (0m22.0s), 2/3 VUs, 11 complete and 0 interrupted iterations
+carga_moderada   [  37% ] 2/3 VUs  0m22.0s/1m00.0s
+
+running (0m23.0s), 2/3 VUs, 12 complete and 0 interrupted iterations
+carga_moderada   [  38% ] 2/3 VUs  0m23.0s/1m00.0s
+
+running (0m24.0s), 2/3 VUs, 12 complete and 0 interrupted iterations
+carga_moderada   [  40% ] 2/3 VUs  0m24.0s/1m00.0s
+
+running (0m25.0s), 2/3 VUs, 14 complete and 0 interrupted iterations
+carga_moderada   [  42% ] 2/3 VUs  0m25.0s/1m00.0s
+
+running (0m26.0s), 2/3 VUs, 14 complete and 0 interrupted iterations
+carga_moderada   [  43% ] 2/3 VUs  0m26.0s/1m00.0s
+
+running (0m27.0s), 2/3 VUs, 15 complete and 0 interrupted iterations
+carga_moderada   [  45% ] 2/3 VUs  0m27.0s/1m00.0s
+
+running (0m28.0s), 2/3 VUs, 16 complete and 0 interrupted iterations
+carga_moderada   [  47% ] 2/3 VUs  0m28.0s/1m00.0s
+
+running (0m29.0s), 2/3 VUs, 17 complete and 0 interrupted iterations
+carga_moderada   [  48% ] 2/3 VUs  0m29.0s/1m00.0s
+
+running (0m30.0s), 2/3 VUs, 18 complete and 0 interrupted iterations
+carga_moderada   [  50% ] 2/3 VUs  0m30.0s/1m00.0s
+
+running (0m31.0s), 2/3 VUs, 19 complete and 0 interrupted iterations
+carga_moderada   [  52% ] 2/3 VUs  0m31.0s/1m00.0s
+
+running (0m32.0s), 2/3 VUs, 19 complete and 0 interrupted iterations
+carga_moderada   [  53% ] 2/3 VUs  0m32.0s/1m00.0s
+
+running (0m33.0s), 2/3 VUs, 20 complete and 0 interrupted iterations
+carga_moderada   [  55% ] 2/3 VUs  0m33.0s/1m00.0s
+
+running (0m34.0s), 2/3 VUs, 21 complete and 0 interrupted iterations
+carga_moderada   [  57% ] 2/3 VUs  0m34.0s/1m00.0s
+
+running (0m35.0s), 2/3 VUs, 22 complete and 0 interrupted iterations
+carga_moderada   [  58% ] 2/3 VUs  0m35.0s/1m00.0s
+
+running (0m36.0s), 3/3 VUs, 23 complete and 0 interrupted iterations
+carga_moderada   [  60% ] 3/3 VUs  0m36.0s/1m00.0s
+
+running (0m37.0s), 3/3 VUs, 23 complete and 0 interrupted iterations
+carga_moderada   [  62% ] 3/3 VUs  0m37.0s/1m00.0s
+
+running (0m38.0s), 3/3 VUs, 26 complete and 0 interrupted iterations
+carga_moderada   [  63% ] 3/3 VUs  0m38.0s/1m00.0s
+
+running (0m39.0s), 3/3 VUs, 26 complete and 0 interrupted iterations
+carga_moderada   [  65% ] 3/3 VUs  0m39.0s/1m00.0s
+
+running (0m40.0s), 3/3 VUs, 28 complete and 0 interrupted iterations
+carga_moderada   [  67% ] 3/3 VUs  0m40.0s/1m00.0s
+
+running (0m41.0s), 3/3 VUs, 29 complete and 0 interrupted iterations
+carga_moderada   [  68% ] 3/3 VUs  0m41.0s/1m00.0s
+
+running (0m42.0s), 3/3 VUs, 29 complete and 0 interrupted iterations
+carga_moderada   [  70% ] 3/3 VUs  0m42.0s/1m00.0s
+
+running (0m43.0s), 3/3 VUs, 32 complete and 0 interrupted iterations
+carga_moderada   [  72% ] 3/3 VUs  0m43.0s/1m00.0s
+
+running (0m44.0s), 3/3 VUs, 32 complete and 0 interrupted iterations
+carga_moderada   [  73% ] 3/3 VUs  0m44.0s/1m00.0s
+
+running (0m45.0s), 3/3 VUs, 35 complete and 0 interrupted iterations
+carga_moderada   [  75% ] 3/3 VUs  0m45.0s/1m00.0s
+
+running (0m46.0s), 3/3 VUs, 35 complete and 0 interrupted iterations
+carga_moderada   [  77% ] 3/3 VUs  0m46.0s/1m00.0s
+
+running (0m47.0s), 3/3 VUs, 37 complete and 0 interrupted iterations
+carga_moderada   [  78% ] 3/3 VUs  0m47.0s/1m00.0s
+
+running (0m48.0s), 3/3 VUs, 38 complete and 0 interrupted iterations
+carga_moderada   [  80% ] 3/3 VUs  0m48.0s/1m00.0s
+
+running (0m49.0s), 3/3 VUs, 39 complete and 0 interrupted iterations
+carga_moderada   [  82% ] 3/3 VUs  0m49.0s/1m00.0s
+
+running (0m50.0s), 3/3 VUs, 41 complete and 0 interrupted iterations
+carga_moderada   [  83% ] 3/3 VUs  0m50.0s/1m00.0s
+
+running (0m51.0s), 3/3 VUs, 41 complete and 0 interrupted iterations
+carga_moderada   [  85% ] 3/3 VUs  0m51.0s/1m00.0s
+
+running (0m52.0s), 3/3 VUs, 44 complete and 0 interrupted iterations
+carga_moderada   [  87% ] 3/3 VUs  0m52.0s/1m00.0s
+
+running (0m53.0s), 3/3 VUs, 44 complete and 0 interrupted iterations
+carga_moderada   [  88% ] 3/3 VUs  0m53.0s/1m00.0s
+
+running (0m54.0s), 2/3 VUs, 45 complete and 0 interrupted iterations
+carga_moderada   [  90% ] 2/3 VUs  0m54.0s/1m00.0s
+
+running (0m55.0s), 2/3 VUs, 47 complete and 0 interrupted iterations
+carga_moderada   [  92% ] 2/3 VUs  0m55.0s/1m00.0s
+
+running (0m56.0s), 2/3 VUs, 47 complete and 0 interrupted iterations
+carga_moderada   [  93% ] 2/3 VUs  0m56.0s/1m00.0s
+
+running (0m57.0s), 2/3 VUs, 49 complete and 0 interrupted iterations
+carga_moderada   [  95% ] 2/3 VUs  0m57.0s/1m00.0s
+
+running (0m58.0s), 2/3 VUs, 49 complete and 0 interrupted iterations
+carga_moderada   [  97% ] 2/3 VUs  0m58.0s/1m00.0s
+
+running (0m59.0s), 1/3 VUs, 50 complete and 0 interrupted iterations
+carga_moderada   [  98% ] 1/3 VUs  0m59.0s/1m00.0s
+
+running (1m00.0s), 1/3 VUs, 51 complete and 0 interrupted iterations
+carga_moderada   [ 100% ] 1/3 VUs  1m00.0s/1m00.0s
+
+running (1m01.0s), 1/3 VUs, 51 complete and 0 interrupted iterations
+carga_moderada ↓ [ 100% ] 1/3 VUs  1m0s
+time="2026-10-07T16:06:58-04:00" level=info msg="[k6-reporter v3.0.4] Generating HTML summary report, with theme: default" source=console
+     ✓ listado: status 200
+     ✓ listado: contiene info.count
+     ✓ personaje: status 200
+     ✓ personaje: tiene nombre
+     ✓ inexistente: status 404
+
+     checks..........................: 100.00% ✓ 260      ✗ 0  
+     data_received...................: 654 kB  11 kB/s
+     data_sent.......................: 16 kB   254 B/s
+     duracion_listado_personajes.....: avg=59.92ms  min=43.19ms  med=52.47ms  max=128.48ms p(90)=98ms     p(95)=104.59ms
+     duracion_personaje_individual...: avg=217.68ms min=114.33ms med=172.95ms max=324.5ms  p(90)=310.41ms p(95)=312.95ms
+   ✓ errores_funcionales.............: 0.00%   ✓ 0        ✗ 156
+     http_req_blocked................: avg=1.98ms   min=0s       med=0s       max=150.92ms p(90)=0s       p(95)=0s      
+     http_req_connecting.............: avg=24.63µs  min=0s       med=0s       max=2.24ms   p(90)=0s       p(95)=0s      
+   ✓ http_req_duration...............: avg=124.15ms min=42.24ms  med=94.74ms  max=324.5ms  p(90)=297.21ms p(95)=305.46ms
+       { expected_response:true }....: avg=124.15ms min=42.24ms  med=94.74ms  max=324.5ms  p(90)=297.21ms p(95)=305.46ms
+   ✓ http_req_failed.................: 0.00%   ✓ 0        ✗ 156
+     http_req_receiving..............: avg=33.88ms  min=0s       med=45.62ms  max=65.8ms   p(90)=54.49ms  p(95)=56.02ms 
+     http_req_sending................: avg=203.25µs min=0s       med=0s       max=1.94ms   p(90)=667.45µs p(95)=816.27µs
+     http_req_tls_handshaking........: avg=1.64ms   min=0s       med=0s       max=100.93ms p(90)=0s       p(95)=0s      
+     http_req_waiting................: avg=90.06ms  min=39.23ms  med=53.27ms  max=279.4ms  p(90)=251.51ms p(95)=257.6ms 
+     http_reqs.......................: 156     2.532847/s
+     iteration_duration..............: avg=2.38s    min=2.26s    med=2.33s    max=2.64s    p(90)=2.49s    p(95)=2.5s    
+     iterations......................: 52      0.844282/s
+     vus.............................: 1       min=0      max=3
+     vus_max.........................: 3       min=3      max=3
+running (1m01.6s), 0/3 VUs, 52 complete and 0 interrupted iterations
+carga_moderada ✓ [ 100% ] 0/3 VUs  1m0s
