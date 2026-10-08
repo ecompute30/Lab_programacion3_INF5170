@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON — JavaScript Object Notation</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="../uasd-theme.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section class="portada" data-background-gradient="linear-gradient(120deg, #293340 0%, #17499f 65%)">
+        <div class="cabecera-marca">
+          <img src="https://uasd.edu.do/wp-content/themes/pagina/img/logo_uasd_pie.svg" alt="UASD" style="height:44px">
+          <span>Lab. Programación III — Práctica 6.2</span>
+        </div>
+        <h1>JSON</h1>
+        <h3>JavaScript Object Notation</h3>
+        <p>Resumen, propósito y por qué es el formato dominante para intercambio de datos hoy</p>
+      </section>
+
+      <section>
+        <h2>Agenda</h2>
+        <ol>
+          <li class="fragment">¿Qué es JSON?</li>
+          <li class="fragment">Propósito</li>
+          <li class="fragment">Características principales</li>
+          <li class="fragment">Ventajas y desventajas</li>
+          <li class="fragment">JSON frente a XML</li>
+          <li class="fragment">Usos actuales</li>
+          <li class="fragment">Ejemplo de objeto JSON</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>¿Qué es JSON?</h2>
+        <p><strong>JSON</strong> (<em>JavaScript Object Notation</em>) es un formato ligero de
+        texto para representar datos estructurados, basado en la sintaxis de los objetos
+        literales de JavaScript, pero independiente de cualquier lenguaje.</p>
+        <p class="fragment">Estandarizado como <strong>ECMA-404</strong> / <strong>RFC 8259</strong>,
+        hoy es prácticamente el idioma universal con el que las APIs web envían y reciben datos.</p>
+      </section>
+
+      <section>
+        <h2>Propósito de JSON</h2>
+        <ul>
+          <li class="fragment">Ofrecer un formato <strong>ligero y rápido de parsear</strong> para el intercambio de datos entre cliente y servidor.</li>
+          <li class="fragment">Mapear de forma directa a las <strong>estructuras de datos nativas</strong> de la mayoría de los lenguajes (objetos, diccionarios, listas).</li>
+          <li class="fragment">Simplificar el consumo de APIs REST, donde reemplazó en gran medida a XML/SOAP.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Características principales</h2>
+        <div class="columnas">
+          <div>
+            <h4>Estructura</h4>
+            <ul>
+              <li class="fragment">Pares <strong>clave: valor</strong></li>
+              <li class="fragment">Objetos <code>{ }</code> y arreglos <code>[ ]</code></li>
+              <li class="fragment">Se pueden anidar libremente</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Tipos de dato</h4>
+            <ul>
+              <li class="fragment"><code>string</code>, <code>number</code>, <code>boolean</code></li>
+              <li class="fragment"><code>null</code></li>
+              <li class="fragment">Sin tipo nativo de fecha (se usa string)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Ventajas y desventajas</h2>
+        <table>
+          <thead>
+            <tr><th>Ventajas</th><th>Desventajas</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ligero: menos caracteres que XML para el mismo dato</td><td>No admite comentarios</td></tr>
+            <tr><td><code>JSON.parse()</code> nativo en JavaScript y la mayoría de lenguajes</td><td>Sin namespaces ni atributos como en XML</td></tr>
+            <tr><td>Muy legible para humanos</td><td>Validación de esquema (JSON Schema) menos madura que XSD</td></tr>
+            <tr><td>Soporte universal en APIs modernas</td><td>Sin tipos nativos para fechas/binarios</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>JSON frente a XML</h2>
+        <table>
+          <thead>
+            <tr><th>Aspecto</th><th>JSON</th><th>XML</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Peso / verbosidad</td><td>Bajo</td><td>Alto</td></tr>
+            <tr><td>Velocidad de parseo</td><td>Rápida</td><td>Más lenta</td></tr>
+            <tr><td>Tipos de dato nativos</td><td class="estado-ok">Sí (number, boolean...)</td><td>No (todo es texto)</td></tr>
+            <tr><td>Validación de esquema madura</td><td>JSON Schema (más reciente)</td><td class="estado-ok">XSD (décadas de uso)</td></tr>
+            <tr><td>Uso típico hoy</td><td>APIs REST, apps web/móviles</td><td>SOAP, documentos empresariales</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Usos actuales de JSON</h2>
+        <div class="columnas">
+          <div>
+            <ul>
+              <li class="fragment"><strong>APIs REST</strong> (ej. JSONPlaceholder, Rick and Morty API — las que usamos en la Práctica 5)</li>
+              <li class="fragment">Bases de datos NoSQL (MongoDB)</li>
+              <li class="fragment">Archivos de configuración: <code>package.json</code>, <code>tsconfig.json</code></li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li class="fragment">Apps móviles (respuestas de backend)</li>
+              <li class="fragment">Almacenamiento local en el navegador</li>
+              <li class="fragment">Nuestro propio <code>menu.json</code> del Menú Dinámico Uastiano</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Ejemplo de objeto JSON</h2>
+        <p style="font-size:0.6em">Extracto real de <code>src/data/menu.json</code>, Práctica 4:</p>
+        <pre><code data-trim data-line-numbers="1|2-7|3|4|5|6" class="language-json">
+{
+  "menu": [
+    {
+      "id": 1,
+      "nombre": "Inicio",
+      "enlace": "/inicio",
+      "icono": "🏠"
+    }
+  ]
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Partes del objeto</h2>
+        <ul>
+          <li class="fragment"><strong>Objeto raíz</strong> <code>{ }</code>: contiene una clave <code>"menu"</code>.</li>
+          <li class="fragment"><strong>Arreglo</strong> <code>[ ]</code>: lista de opciones de menú, cada una un objeto.</li>
+          <li class="fragment"><strong>Clave</strong> <code>"id"</code>: siempre va entre comillas dobles.</li>
+          <li class="fragment"><strong>Valor numérico</strong> <code>1</code>: sin comillas, tipo <code>number</code>.</li>
+          <li class="fragment"><strong>Valores de tipo</strong> <code>string</code>: <code>"nombre"</code>, <code>"enlace"</code>, <code>"icono"</code>.</li>
+        </ul>
+      </section>
+
+      <section data-background-gradient="linear-gradient(120deg, #293340 0%, #17499f 65%)">
+        <h2 style="color:white">En síntesis</h2>
+        <p style="color:#dbe4f5">
+          JSON ganó la mayoría de las APIs web modernas por ser liviano y nativo
+          en JavaScript — pero en la Práctica 6.3 veremos cómo se usa en vivo,
+          a través de <strong>AJAX</strong>, para traer estos datos sin recargar la página.
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      controls: true,
+      progress: true,
+      slideNumber: true,
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+</html>
