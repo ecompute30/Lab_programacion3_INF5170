@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validador de Cédula Dominicana</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>🪪 Validador de Cédula Dominicana</h1>
+    <p>Práctica 9 — Servicios Web. Valida el dígito verificador con el algoritmo del módulo 10 y lo contrasta con la API oficial del gobierno dominicano.</p>
+  </header>
+
+  <main>
+    <section class="tarjeta-validador">
+      <form id="formulario-cedula">
+        <label for="campo-cedula">Número de cédula</label>
+        <input
+          type="text"
+          id="campo-cedula"
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="000-0000000-0"
+          maxlength="13"
+        >
+        <button type="submit" id="boton-validar">Validar</button>
+      </form>
+
+      <div id="resultado" class="resultado" hidden>
+        <div class="icono-resultado" id="icono-resultado"></div>
+        <p class="texto-resultado" id="texto-resultado"></p>
+        <ul class="detalle-resultado" id="detalle-resultado"></ul>
+      </div>
+    </section>
+
+    <section class="tarjeta-info">
+      <h2>¿Cómo funciona?</h2>
+      <ol>
+        <li>Escribe los 11 dígitos de la cédula; el formato <code>000-0000000-0</code> se aplica automáticamente.</li>
+        <li>El servidor calcula el dígito verificador con el <strong>algoritmo del módulo 10</strong> sobre los primeros 10 dígitos.</li>
+        <li>Además, consulta la <a href="https://api.digital.gob.do/v3/cedulas/40225999348/validate" target="_blank" rel="noopener noreferrer">API oficial del gobierno</a> como referencia (puede no estar disponible en todo momento; en ese caso solo se muestra el resultado local).</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Edwin Alberto Roman Seberino. Práctica 9 — Validador de cédula (módulo 10).</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
