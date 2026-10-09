@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 6 — Formatos de Transporte de Datos</title>
+  <style>
+    :root {
+      --azul-primario: #17499f;
+      --azul-oscuro: #293340;
+      --dorado: #b38e05;
+      --gris-claro: #f5f7fb;
+      --gris-borde: #e2e2e2;
+      --blanco: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--azul-oscuro);
+      background-color: var(--gris-claro);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(120deg, var(--azul-oscuro) 0%, var(--azul-primario) 65%);
+      color: var(--blanco);
+      padding: 2.8rem 5%;
+    }
+    header .marca {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+    header .marca img { height: 40px; }
+    header .marca span {
+      font-weight: bold;
+      border-left: 2px solid var(--dorado);
+      padding-left: 0.7rem;
+    }
+    header h1 { margin: 0 0 0.5rem; font-size: 2rem; }
+    header p { color: #dbe4f5; max-width: 760px; margin: 0; }
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2.5rem 5% 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.3rem;
+    }
+    .tarjeta {
+      background-color: var(--blanco);
+      border: 1px solid var(--gris-borde);
+      border-radius: 10px;
+      padding: 1.6rem 1.8rem;
+      text-decoration: none;
+      color: var(--azul-oscuro);
+      display: block;
+      transition: box-shadow 0.15s ease;
+    }
+    .tarjeta:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    .tarjeta .numero {
+      display: inline-block;
+      background-color: var(--dorado);
+      color: var(--blanco);
+      font-size: 0.72rem;
+      font-weight: bold;
+      padding: 0.15rem 0.6rem;
+      border-radius: 20px;
+      margin-bottom: 0.7rem;
+    }
+    .tarjeta h2 {
+      margin: 0 0 0.4rem;
+      color: var(--azul-primario);
+    }
+    .tarjeta p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #4a5568;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #6b7280;
+      font-size: 0.82rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="marca">
+      <img src="https://uasd.edu.do/wp-content/themes/pagina/img/logo_uasd_pie.svg" alt="Universidad Autónoma de Santo Domingo">
+      <span>Lab. Programación III</span>
+    </div>
+    <h1>Práctica 6 — Formatos de Transporte de Datos</h1>
+    <p>
+      Tres presentaciones (reveal.js) que resumen XML, JSON y AJAX: qué son, para qué se usan,
+      sus ventajas/desventajas y ejemplos concretos, incluyendo datos reales de prácticas
+      anteriores de este mismo laboratorio.
+    </p>
+  </header>
+
+  <main>
+    <a class="tarjeta" href="P6.1_XML/">
+      <span class="numero">6.1</span>
+      <h2>XML</h2>
+      <p>eXtensible Markup Language: propósito, características, ventajas/desventajas y un ejemplo de documento XML comentado.</p>
+    </a>
+    <a class="tarjeta" href="P6.2_JSON/">
+      <span class="numero">6.2</span>
+      <h2>JSON</h2>
+      <p>JavaScript Object Notation: por qué domina las APIs modernas, comparación con XML, y un ejemplo real tomado del propio Menú Dinámico Uastiano.</p>
+    </a>
+    <a class="tarjeta" href="P6.3_AJAX/">
+      <span class="numero">6.3</span>
+      <h2>AJAX</h2>
+      <p>Cómo JavaScript actualiza una página sin recargarla, la relación navegador-servidor, y un ejemplo de <code>fetch()</code> contra una API real.</p>
+    </a>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Edwin Alberto Roman Seberino. Práctica 6 — Formatos de Transporte de Datos.</p>
+  </footer>
+
+</body>
+</html>

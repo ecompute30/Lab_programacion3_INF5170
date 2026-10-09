@@ -32,10 +32,8 @@
   - ✅ **5.1** Pruebas Automatizadas de UI y API con Playwright — UI: Menú Dinámico Uastiano (Práctica 4) · API: JSONPlaceholder — [Ver reporte](https://ecompute30.github.io/Lab_programacion3_INF5170/P51_PruebasAutomatizada_UI_API/) · [Código fuente](P51_PruebasAutomatizada_UI_API/)
   - ✅ **5.2** Pruebas BDD con Gherkin — 7 escenarios (playwright-bdd) sobre el Menú Dinámico Uastiano — [Ver reporte](https://ecompute30.github.io/Lab_programacion3_INF5170/P52_PruebasBDD_Gherkin/) · [Código fuente](P52_PruebasBDD_Gherkin/)
   - ✅ **5.3** Pruebas de Performance con k6 — carga moderada + prueba de estrés sobre la Rick and Morty API — [Ver reporte](https://ecompute30.github.io/Lab_programacion3_INF5170/P53_PruebasPerformance_k6/) · [Código fuente](P53_PruebasPerformance_k6/)
-- ⏳ **Práctica 6 — XML / JSON**
-  - Resumen de XML y su uso con ejemplo
-  - Resumen de JSON y su uso con ejemplo
-  - Resumen de AJAX con ejemplo de funcionamiento
+- ✅ **Práctica 6 — Formatos de Transporte de Datos**
+  - Tres presentaciones reveal.js (XML, JSON, AJAX) — [Ver presentaciones](https://ecompute30.github.io/Lab_programacion3_INF5170/P6_FormatosTransporteDatos/) · [Código fuente](P6_FormatosTransporteDatos/)
 - ⏳ **Práctica 7 — Acceso a Base de Datos**
   - Crear un Formulario con Acceso a BD *(individual o grupal)*
 - ⏳ **Práctica 8 — Modelo MVC**
@@ -53,4 +51,4 @@
 - ⏳ **Evaluación General** *(Cuestionario)*
 ---
  
-*Última actualización: Octubre 2026 — Completado hasta Práctica 5*
+*Última actualización: Octubre 2026 — Completado hasta Práctica 6*

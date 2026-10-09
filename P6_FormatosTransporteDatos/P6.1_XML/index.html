@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XML — Lenguaje de Marcado Extensible</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="../uasd-theme.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section class="portada" data-background-gradient="linear-gradient(120deg, #293340 0%, #17499f 65%)">
+        <div class="cabecera-marca">
+          <img src="https://uasd.edu.do/wp-content/themes/pagina/img/logo_uasd_pie.svg" alt="UASD" style="height:44px">
+          <span>Lab. Programación III — Práctica 6.1</span>
+        </div>
+        <h1>XML</h1>
+        <h3>eXtensible Markup Language</h3>
+        <p>Resumen, propósito y usos actuales en el intercambio de información estructurada</p>
+      </section>
+
+      <section>
+        <h2>Agenda</h2>
+        <ol>
+          <li class="fragment">¿Qué es XML?</li>
+          <li class="fragment">Propósito</li>
+          <li class="fragment">Características principales</li>
+          <li class="fragment">Ventajas y desventajas</li>
+          <li class="fragment">XML frente a otros formatos</li>
+          <li class="fragment">Usos actuales</li>
+          <li class="fragment">Ejemplo de documento XML</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>¿Qué es XML?</h2>
+        <p><strong>XML</strong> (<em>eXtensible Markup Language</em>) es un lenguaje de marcado
+        creado por el W3C en 1998 para describir y estructurar información de forma jerárquica,
+        usando texto plano y etiquetas definidas por quien lo usa.</p>
+        <p class="fragment">A diferencia de HTML, que tiene etiquetas fijas para presentación
+        (<code>&lt;p&gt;</code>, <code>&lt;table&gt;</code>...), en XML <strong>el autor del
+        documento define sus propias etiquetas</strong> según el significado de los datos.</p>
+      </section>
+
+      <section>
+        <h2>Propósito de XML</h2>
+        <ul>
+          <li class="fragment">Representar datos <strong>estructurados y jerárquicos</strong> de forma independiente de la plataforma, el lenguaje de programación o la aplicación que los genera.</li>
+          <li class="fragment">Ser legible tanto por <strong>humanos</strong> (es texto plano) como por <strong>máquinas</strong> (tiene una gramática formal y validable).</li>
+          <li class="fragment">Permitir el <strong>intercambio de información</strong> entre sistemas distintos sin perder la estructura ni el significado de los datos.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Características principales</h2>
+        <div class="columnas">
+          <div>
+            <h4>Estructurales</h4>
+            <ul>
+              <li class="fragment">Jerárquico (estructura de árbol)</li>
+              <li class="fragment">Un único elemento raíz</li>
+              <li class="fragment">Etiquetas de apertura y cierre</li>
+              <li class="fragment">Soporta atributos y namespaces</li>
+            </ul>
+          </div>
+          <div>
+            <h4>De diseño</h4>
+            <ul>
+              <li class="fragment">Extensible: etiquetas definidas por el autor</li>
+              <li class="fragment">Autodescriptivo</li>
+              <li class="fragment">Validable con DTD o XSD (esquemas)</li>
+              <li class="fragment">Separa datos de presentación</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Ventajas y desventajas</h2>
+        <table>
+          <thead>
+            <tr><th>Ventajas</th><th>Desventajas</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Estándar abierto y ampliamente soportado</td><td>Sintaxis verbosa (etiquetas de apertura/cierre)</td></tr>
+            <tr><td>Validación estricta de esquema (XSD)</td><td>Archivos más pesados que JSON para los mismos datos</td></tr>
+            <tr><td>Soporta namespaces y metadatos como atributos</td><td>Parseo más costoso en rendimiento</td></tr>
+            <tr><td>Maduro en sistemas empresariales y legacy</td><td>Curva de aprendizaje de XSD/XPath/XSLT</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>XML frente a otros formatos</h2>
+        <table>
+          <thead>
+            <tr><th>Aspecto</th><th>XML</th><th>JSON</th><th>CSV</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Estructura</td><td>Jerárquica</td><td>Jerárquica</td><td>Plana (tabular)</td></tr>
+            <tr><td>Peso</td><td>Alto</td><td>Bajo</td><td>Muy bajo</td></tr>
+            <tr><td>Validación de esquema</td><td>XSD / DTD (madura)</td><td>JSON Schema</td><td>Ninguna nativa</td></tr>
+            <tr><td>Soporta atributos y namespaces</td><td class="estado-ok">Sí</td><td>No</td><td>No</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Usos actuales de XML</h2>
+        <div class="columnas">
+          <div>
+            <ul>
+              <li class="fragment">Servicios web <strong>SOAP</strong></li>
+              <li class="fragment">Feeds <strong>RSS / Atom</strong></li>
+              <li class="fragment">Configuración: <code>pom.xml</code> (Maven), <code>web.config</code> (.NET)</li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li class="fragment">Layouts de Android (<code>activity_main.xml</code>)</li>
+              <li class="fragment">Documentos Office (.docx/.xlsx son ZIPs de XML internamente)</li>
+              <li class="fragment">EDI e integraciones en banca, salud y gobierno</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Ejemplo de documento XML</h2>
+        <pre><code data-trim data-line-numbers="1|2|3-7|4|5|8" class="language-xml">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;biblioteca&gt;
+  &lt;libro id="1" disponible="true"&gt;
+    &lt;titulo&gt;Cien años de soledad&lt;/titulo&gt;
+    &lt;autor&gt;Gabriel García Márquez&lt;/autor&gt;
+  &lt;/libro&gt;
+&lt;/biblioteca&gt;
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Partes del documento</h2>
+        <ul>
+          <li class="fragment"><strong>Prólogo</strong> (<code>&lt;?xml version="1.0"?&gt;</code>): declara la versión y codificación.</li>
+          <li class="fragment"><strong>Elemento raíz</strong> (<code>&lt;biblioteca&gt;</code>): único, envuelve todo el documento.</li>
+          <li class="fragment"><strong>Elemento hijo</strong> (<code>&lt;libro&gt;</code>): puede repetirse y anidarse.</li>
+          <li class="fragment"><strong>Atributos</strong> (<code>id="1"</code>, <code>disponible="true"</code>): metadatos del elemento.</li>
+          <li class="fragment"><strong>Contenido de texto</strong> (<code>&lt;titulo&gt;...&lt;/titulo&gt;</code>): el dato en sí.</li>
+        </ul>
+      </section>
+
+      <section data-background-gradient="linear-gradient(120deg, #293340 0%, #17499f 65%)">
+        <h2 style="color:white">En síntesis</h2>
+        <p style="color:#dbe4f5">
+          XML sigue siendo clave donde se requiere validación estricta de esquema,
+          namespaces y compatibilidad con sistemas empresariales maduros — aunque
+          para APIs web modernas, JSON (siguiente presentación) lo ha desplazado
+          por ser más ligero.
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      controls: true,
+      progress: true,
+      slideNumber: true,
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX — Asynchronous JavaScript And XML</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="../uasd-theme.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section class="portada" data-background-gradient="linear-gradient(120deg, #293340 0%, #17499f 65%)">
+        <div class="cabecera-marca">
+          <img src="https://uasd.edu.do/wp-content/themes/pagina/img/logo_uasd_pie.svg" alt="UASD" style="height:44px">
+          <span>Lab. Programación III — Práctica 6.3</span>
+        </div>
+        <h1>AJAX</h1>
+        <h3>Asynchronous JavaScript And XML</h3>
+        <p>Qué es, cómo funciona y por qué es la base de las aplicaciones web modernas</p>
+      </section>
+
+      <section>
+        <h2>Agenda</h2>
+        <ol>
+          <li class="fragment">¿Qué es AJAX?</li>
+          <li class="fragment">Propósito</li>
+          <li class="fragment">Cómo funciona</li>
+          <li class="fragment">Relación JS – navegador – servidor</li>
+          <li class="fragment">Ventajas y desventajas</li>
+          <li class="fragment">Usos actuales</li>
+          <li class="fragment">Página tradicional vs. AJAX</li>
+          <li class="fragment">Ejemplo de funcionamiento</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>¿Qué es AJAX?</h2>
+        <p><strong>AJAX</strong> (<em>Asynchronous JavaScript And XML</em>) no es un lenguaje ni
+        una tecnología única, sino una <strong>técnica</strong>: usar JavaScript para hacer
+        solicitudes HTTP en segundo plano, sin recargar la página completa.</p>
+        <p class="fragment">El nombre incluye "XML" por su origen histórico (el objeto
+        <code>XMLHttpRequest</code>, año 2005), pero hoy casi siempre se intercambia
+        <strong>JSON</strong> en vez de XML — por eso vimos JSON justo antes.</p>
+      </section>
+
+      <section>
+        <h2>Propósito de AJAX</h2>
+        <ul>
+          <li class="fragment">Actualizar <strong>partes de una página</strong> sin recargarla por completo.</li>
+          <li class="fragment">Reducir el tráfico de red: se transfieren solo los <strong>datos</strong>, no todo el HTML de nuevo.</li>
+          <li class="fragment">Mejorar la experiencia de usuario con interfaces más fluidas y "tipo app".</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>¿Cómo funciona AJAX?</h2>
+        <ol>
+          <li class="fragment">El usuario realiza una acción (clic, escribir, seleccionar).</li>
+          <li class="fragment">JavaScript dispara una solicitud HTTP <strong>asíncrona</strong> (<code>fetch</code> o <code>XMLHttpRequest</code>).</li>
+          <li class="fragment">El navegador <strong>sigue respondiendo</strong> mientras se espera la respuesta.</li>
+          <li class="fragment">El servidor procesa la solicitud y responde (normalmente con JSON).</li>
+          <li class="fragment">JavaScript recibe la respuesta y <strong>actualiza el DOM</strong> con los nuevos datos.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Relación AJAX – JS – navegador – servidor</h2>
+        <div class="columnas" style="text-align:center; align-items:center">
+          <div>
+            <h4>Navegador</h4>
+            <p style="font-size:0.7em">JavaScript ejecuta <code>fetch()</code> ante un evento del usuario</p>
+          </div>
+          <div style="font-size:2em">⇄</div>
+          <div>
+            <h4>Servidor / API</h4>
+            <p style="font-size:0.7em">Procesa la solicitud y responde con datos (JSON)</p>
+          </div>
+        </div>
+        <p class="fragment hallazgo" style="margin-top:2rem">
+          El navegador nunca deja de mostrar la página actual: solo el fragmento de JS que
+          hizo la solicitud se entera de la respuesta y decide qué parte del DOM actualizar.
+        </p>
+      </section>
+
+      <section>
+        <h2>Ventajas y desventajas</h2>
+        <table>
+          <thead>
+            <tr><th>Ventajas</th><th>Desventajas</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>UX fluida, sin parpadeo de recarga completa</td><td>Depende de JavaScript habilitado en el navegador</td></tr>
+            <tr><td>Menor consumo de ancho de banda (solo datos)</td><td>Manejo del botón "atrás" requiere cuidado extra</td></tr>
+            <tr><td>Permite validaciones y búsquedas en tiempo real</td><td>SEO más complejo si el contenido depende 100% de JS</td></tr>
+            <tr><td>Base de las SPA (Single Page Applications)</td><td>Depuración más compleja (estado asíncrono)</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Usos actuales de AJAX</h2>
+        <div class="columnas">
+          <div>
+            <ul>
+              <li class="fragment">Autocompletado de búsqueda (Google, buscadores de e-commerce)</li>
+              <li class="fragment">Validación de formularios en vivo (ej. "este usuario ya existe")</li>
+              <li class="fragment">Scroll infinito (redes sociales)</li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li class="fragment">Carritos de compra que se actualizan sin recargar</li>
+              <li class="fragment">Dashboards con datos en tiempo real</li>
+              <li class="fragment">Toda aplicación SPA (ej. nuestro Menú Dinámico Uastiano, Vue 3)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Página tradicional vs. página con AJAX</h2>
+        <table>
+          <thead>
+            <tr><th>Aspecto</th><th>Tradicional</th><th>Con AJAX</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ante una acción del usuario</td><td>Recarga toda la página</td><td>Actualiza solo una parte</td></tr>
+            <tr><td>Datos transferidos</td><td>HTML completo otra vez</td><td>Solo los datos (JSON)</td></tr>
+            <tr><td>Percepción de velocidad</td><td>Más lenta (parpadeo)</td><td>Instantánea / fluida</td></tr>
+            <tr><td>Estado de la UI (scroll, formularios)</td><td>Se pierde al recargar</td><td>Se conserva</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Ejemplo de funcionamiento</h2>
+        <p style="font-size:0.6em">Una solicitud AJAX real con <code>fetch()</code> contra una API pública (la misma que usamos en la Práctica 5.1):</p>
+        <pre><code data-trim data-line-numbers="1|2-4|5-7|8-10" class="language-javascript">
+boton.addEventListener('click', async () => {
+  const respuesta = await fetch(
+    'https://jsonplaceholder.typicode.com/posts/1'
+  );
+  const datos = await respuesta.json();
+
+  document.querySelector('#resultado').textContent =
+    datos.title;
+  // La página nunca se recargó: solo cambió #resultado
+});
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Paso a paso de este ejemplo</h2>
+        <ol>
+          <li class="fragment">El usuario hace clic en un botón (evento).</li>
+          <li class="fragment"><code>fetch()</code> envía una solicitud GET asíncrona a la API.</li>
+          <li class="fragment">El servidor responde con un objeto <strong>JSON</strong>.</li>
+          <li class="fragment"><code>await respuesta.json()</code> convierte la respuesta en un objeto JS.</li>
+          <li class="fragment">Se actualiza únicamente el elemento <code>#resultado</code> del DOM.</li>
+        </ol>
+      </section>
+
+      <section data-background-gradient="linear-gradient(120deg, #293340 0%, #17499f 65%)">
+        <h2 style="color:white">En síntesis</h2>
+        <p style="color:#dbe4f5">
+          XML, JSON y AJAX son tres piezas del mismo rompecabezas: XML y JSON son
+          <strong>formatos</strong> para estructurar datos; AJAX es la <strong>técnica</strong>
+          que usa JavaScript para transportar esos datos entre navegador y servidor sin
+          recargar la página — el mismo principio detrás de toda aplicación web moderna
+          que hemos construido en este laboratorio.
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      controls: true,
+      progress: true,
+      slideNumber: true,
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+</html>
