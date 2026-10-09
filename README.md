@@ -34,14 +34,14 @@
   - ✅ **5.3** Pruebas de Performance con k6 — carga moderada + prueba de estrés sobre la Rick and Morty API — [Ver reporte](https://ecompute30.github.io/Lab_programacion3_INF5170/P53_PruebasPerformance_k6/) · [Código fuente](P53_PruebasPerformance_k6/)
 - ✅ **Práctica 6 — Formatos de Transporte de Datos**
   - Tres presentaciones reveal.js (XML, JSON, AJAX) — [Ver presentaciones](https://ecompute30.github.io/Lab_programacion3_INF5170/P6_FormatosTransporteDatos/) · [Código fuente](P6_FormatosTransporteDatos/)
-- ⏳ **Práctica 7 — Acceso a Base de Datos**
-  - Crear un Formulario con Acceso a BD *(individual o grupal)*
-- ⏳ **Práctica 8 — Modelo MVC**
-  - MVC en el desarrollo web moderno: origen, evolución y uso actual
-- ⏳ **Práctica 9 — Servicios Web**
-  - Desarrollar un Servicio Web para validar cédula de identidad usando módulo 10 *(individual o grupal)*
-- ⏳ **Práctica 10 — Framework de Desarrollo / Control de Versiones**
-  - Spring Framework — Describir funcionalidades del framework
+- ✅ **Práctica 7 — Acceso a Base de Datos**
+  - Lista de Tareas (CRUD completo) — Node.js + TypeScript + Express + SQLite — [Código fuente](P7_TodoList_NodeTS_SQLite/)
+- ✅ **Práctica 8 — Modelo MVC**
+  - MVC en el desarrollo web moderno: origen, evolución y uso actual — [Ver presentación](https://ecompute30.github.io/Lab_programacion3_INF5170/P8_ModeloMVC/) · [Código fuente](P8_ModeloMVC/)
+- ✅ **Práctica 9 — Servicios Web**
+  - Validador de cédula dominicana (algoritmo módulo 10 + API oficial) — Node.js + TypeScript — [Código fuente](P9_ValidadorCedula/)
+- ✅ **Práctica 10 — Framework de Desarrollo / Control de Versiones**
+  - Spring Framework — Describir funcionalidades del framework — [Ver presentación](https://ecompute30.github.io/Lab_programacion3_INF5170/P10_SpringFramework/) · [Código fuente](P10_SpringFramework/)
 ---
  
 ## Entregables Finales
@@ -51,4 +51,4 @@
 - ⏳ **Evaluación General** *(Cuestionario)*
 ---
  
-*Última actualización: Octubre 2026 — Completado hasta Práctica 6*
+*Última actualización: Octubre 2026 — Completado hasta Práctica 10*

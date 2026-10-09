@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Tareas — Node.js + TypeScript + SQLite</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>📝 Lista de Tareas</h1>
+    <p>Práctica 7 — Acceso a Base de Datos. Backend en Node.js + TypeScript + Express, persistencia en SQLite.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2 id="titulo-formulario">Agregar tarea</h2>
+      <p id="mensaje-error" class="mensaje-error" hidden></p>
+      <form id="formulario-tarea">
+        <input type="hidden" id="tarea-id">
+        <input type="hidden" id="tarea-completada" value="false">
+        <div class="campo">
+          <label for="tarea-titulo">Título</label>
+          <input type="text" id="tarea-titulo" required placeholder="Ej: Estudiar para el examen de BD">
+        </div>
+        <div class="campo">
+          <label for="tarea-descripcion">Descripción</label>
+          <textarea id="tarea-descripcion" placeholder="Detalles opcionales..."></textarea>
+        </div>
+        <div class="acciones-form">
+          <button type="submit" id="boton-guardar" class="boton-primario">Agregar tarea</button>
+          <button type="button" id="boton-cancelar" class="boton-secundario" hidden>Cancelar edición</button>
+        </div>
+      </form>
+    </section>
+
+    <section>
+      <h2>Tareas guardadas</h2>
+      <ul class="lista-tareas" id="lista-tareas"></ul>
+      <p class="vacio" id="mensaje-vacio" hidden>Aún no hay tareas. Agrega la primera con el formulario de arriba.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Edwin Alberto Roman Seberino. Práctica 7 — CRUD con Node.js, TypeScript y SQLite.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

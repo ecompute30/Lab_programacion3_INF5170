@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modelo Vista Controlador (MVC)</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="uasd-theme.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section class="portada" data-background-gradient="linear-gradient(120deg, #293340 0%, #17499f 65%)">
+        <div class="cabecera-marca">
+          <img src="https://uasd.edu.do/wp-content/themes/pagina/img/logo_uasd_pie.svg" alt="UASD" style="height:44px">
+          <span>Lab. Programación III — Práctica 8</span>
+        </div>
+        <h1>Modelo Vista Controlador</h1>
+        <h3>MVC: origen, evolución y vigencia</h3>
+        <p>Un patrón de los años 70 que sigue debajo de casi todos los frameworks web modernos</p>
+      </section>
+
+      <section>
+        <h2>Agenda</h2>
+        <ol>
+          <li class="fragment">¿Qué es MVC?</li>
+          <li class="fragment">Origen y propósito inicial</li>
+          <li class="fragment">Modelo, Vista y Controlador</li>
+          <li class="fragment">Ventajas y desventajas</li>
+          <li class="fragment">¿Por qué sigue vigente?</li>
+          <li class="fragment">MVC en frameworks modernos</li>
+          <li class="fragment">Ejemplo: registro de estudiantes</li>
+          <li class="fragment">Conclusión</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>¿Qué es el patrón MVC?</h2>
+        <p><strong>Modelo-Vista-Controlador</strong> es un patrón de arquitectura de software
+        que separa una aplicación en tres responsabilidades independientes: los
+        <strong>datos</strong>, lo que el <strong>usuario ve</strong> y la <strong>lógica</strong>
+        que conecta ambos.</p>
+        <p class="fragment">Su objetivo es que un cambio en una capa (por ejemplo, rediseñar la
+        interfaz) no obligue a tocar las otras (la lógica de negocio o los datos).</p>
+      </section>
+
+      <section>
+        <h2>Origen del modelo MVC</h2>
+        <ul>
+          <li class="fragment">Creado por <strong>Trygve Reenskaug</strong> en 1979, durante su estadía en <strong>Xerox PARC</strong>.</li>
+          <li class="fragment">Diseñado originalmente para <strong>Smalltalk-80</strong>, uno de los primeros lenguajes orientados a objetos con interfaz gráfica.</li>
+          <li class="fragment">El problema que resolvía: las aplicaciones gráficas mezclaban datos, lógica y pantalla en el mismo código, haciéndolas difíciles de mantener.</li>
+          <li class="fragment">MVC nació para que distintos desarrolladores pudieran trabajar la interfaz y la lógica <strong>por separado</strong>, sin pisarse.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Los tres componentes</h2>
+        <div class="columnas">
+          <div>
+            <h4>📦 Modelo</h4>
+            <p style="font-size:0.75em">Representa los <strong>datos</strong> y las reglas de negocio. No sabe nada de cómo se muestran.</p>
+          </div>
+          <div>
+            <h4>🖥️ Vista</h4>
+            <p style="font-size:0.75em">Lo que el usuario <strong>ve e interactúa</strong>. Muestra datos del Modelo, sin lógica de negocio propia.</p>
+          </div>
+          <div>
+            <h4>🎮 Controlador</h4>
+            <p style="font-size:0.75em">Recibe la <strong>entrada del usuario</strong>, decide qué hacer con el Modelo y qué Vista mostrar.</p>
+          </div>
+        </div>
+        <p class="fragment hallazgo" style="margin-top:2rem">
+          El flujo típico: Usuario → Controlador → Modelo → Controlador → Vista → Usuario.
+        </p>
+      </section>
+
+      <section>
+        <h2>Ventajas y desventajas</h2>
+        <table>
+          <thead>
+            <tr><th>Ventajas</th><th>Desventajas</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Separación de responsabilidades clara</td><td>Curva de aprendizaje para principiantes</td></tr>
+            <tr><td>Facilita pruebas unitarias (Modelo aislado de la UI)</td><td>Puede ser excesivo para apps muy pequeñas</td></tr>
+            <tr><td>Permite trabajo paralelo en equipo (front/back)</td><td>Riesgo de un Controlador "gordo" si no se diseña bien</td></tr>
+            <tr><td>Reutilización: varias Vistas sobre el mismo Modelo</td><td>Más archivos/capas que un script simple</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>¿Por qué sigue siendo importante?</h2>
+        <ul>
+          <li class="fragment">Porque la <strong>idea</strong> (separar datos, presentación y lógica) es independiente de la tecnología — funciona igual en 1979 que en una API REST de 2026.</li>
+          <li class="fragment">Casi todo framework web moderno es, en el fondo, <strong>una variación de MVC</strong> (o de su primo, MVVM).</li>
+          <li class="fragment">Entender MVC permite entender <em>por qué</em> un framework organiza las carpetas como lo hace, en vez de memorizar la estructura sin razonarla.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>MVC en frameworks modernos</h2>
+        <p style="font-size:0.75em">La idea central se mantiene, pero cada framework la adapta:</p>
+        <table>
+          <thead>
+            <tr><th>Framework</th><th>Lenguaje</th><th>Particularidad</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Spring MVC</td><td>Java</td><td>Controladores con anotaciones (<code>@Controller</code>), muy usado en apps empresariales</td></tr>
+            <tr><td>ASP.NET MVC</td><td>C#</td><td>Convenciones de rutas y vistas Razor integradas al framework</td></tr>
+            <tr><td>Laravel</td><td>PHP</td><td>Agrega un ORM (Eloquent) y "rutas" muy expresivas sobre el mismo patrón</td></tr>
+            <tr><td>Django</td><td>Python</td><td>Se llama a sí mismo "MTV" (Model-Template-View) — misma idea, otro nombre</td></tr>
+            <tr><td>Ruby on Rails</td><td>Ruby</td><td>Popularizó "convención sobre configuración" dentro de MVC</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>MVC tradicional vs. hoy</h2>
+        <div class="columnas">
+          <div>
+            <h4>MVC clásico (Smalltalk)</h4>
+            <ul style="font-size:0.75em">
+              <li>Una sola aplicación de escritorio</li>
+              <li>Vista y Controlador muy acoplados a la UI gráfica local</li>
+            </ul>
+          </div>
+          <div>
+            <h4>MVC web moderno</h4>
+            <ul style="font-size:0.75em">
+              <li>Controlador = endpoint HTTP (API REST)</li>
+              <li>Vista puede ser HTML server-side o JSON consumido por un frontend SPA (React/Vue)</li>
+              <li>Modelo suele incluir el ORM y la base de datos</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Ejemplo: Sistema de registro de estudiantes</h2>
+        <div class="columnas">
+          <div>
+            <h4>Modelo</h4>
+            <p style="font-size:0.7em">Representa los datos del estudiante: matrícula, nombre, carrera, correo. Define cómo se guardan y validan.</p>
+          </div>
+          <div>
+            <h4>Vista</h4>
+            <p style="font-size:0.7em">Formulario web donde se registran o consultan estudiantes (como el de la Práctica 7, con nuestras tareas).</p>
+          </div>
+          <div>
+            <h4>Controlador</h4>
+            <p style="font-size:0.7em">Recibe los datos del formulario, valida la información y decide qué respuesta/Vista enviar de vuelta.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>El mismo ejemplo, en código</h2>
+        <p style="font-size:0.6em">Así se vería en nuestra propia Práctica 7 (CRUD de tareas), aplicando MVC:</p>
+        <pre><code data-trim data-line-numbers="1-4|6-9|11-15" class="language-typescript">
+// MODELO — define la forma del dato y el acceso a la BD
+interface Tarea { id: number; titulo: string; completada: boolean }
+function crearTarea(titulo: string): Tarea { /* INSERT en SQLite */ }
+
+// VISTA — el formulario HTML que el usuario ve y completa
+// (public/index.html + app.js en la Práctica 7)
+
+// CONTROLADOR — recibe la petición, valida y decide la respuesta
+app.post('/api/tareas', (req, res) => {
+  if (!req.body.titulo) return res.status(400).json({ error: '...' });
+  const tarea = crearTarea(req.body.titulo);
+  res.status(201).json(tarea); // responde con el Modelo actualizado
+});
+        </code></pre>
+      </section>
+
+      <section data-background-gradient="linear-gradient(120deg, #293340 0%, #17499f 65%)">
+        <h2 style="color:white">Conclusión personal</h2>
+        <p style="color:#dbe4f5; max-width:800px; margin:0 auto">
+          Comprender MVC antes de aprender un framework evita que ese framework se sienta como
+          "magia": cuando se sabe que un <em>Controller</em> de Spring o una <em>View</em> de
+          Django son solo nombres distintos para las mismas tres responsabilidades de 1979,
+          aprender un framework nuevo deja de ser memorizar carpetas y pasa a ser reconocer un
+          patrón ya conocido — exactamente lo que hicimos en la Práctica 7 sin llamarlo "MVC"
+          explícitamente.
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      controls: true,
+      progress: true,
+      slideNumber: true,
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+</html>
