@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spring Framework</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="uasd-theme.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section class="portada" data-background-gradient="linear-gradient(120deg, #293340 0%, #17499f 65%)">
+        <div class="cabecera-marca">
+          <img src="https://uasd.edu.do/wp-content/themes/pagina/img/logo_uasd_pie.svg" alt="UASD" style="height:44px">
+          <span>Lab. Programación III — Práctica 10</span>
+        </div>
+        <h1>Spring Framework</h1>
+        <h3>El framework empresarial de referencia en Java</h3>
+        <p>Funcionalidades principales y su rol en el desarrollo de aplicaciones empresariales</p>
+      </section>
+
+      <section>
+        <h2>Agenda</h2>
+        <ol>
+          <li class="fragment">¿Qué es Spring Framework?</li>
+          <li class="fragment">Características y ventajas principales</li>
+          <li class="fragment">Módulos más importantes</li>
+          <li class="fragment">Ejemplos de uso real</li>
+          <li class="fragment">Conclusión</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>¿Qué es Spring Framework?</h2>
+        <p><strong>Spring</strong> es un framework de código abierto para Java, creado por
+        <strong>Rod Johnson</strong> en 2003, orientado al desarrollo de aplicaciones
+        <strong>empresariales</strong>.</p>
+        <p class="fragment">Su idea central es la <strong>Inversión de Control (IoC)</strong> y
+        la <strong>Inyección de Dependencias (DI)</strong>: en vez de que cada clase cree sus
+        propias dependencias, Spring las "inyecta" desde un contenedor central.</p>
+      </section>
+
+      <section>
+        <h2>Características y ventajas</h2>
+        <div class="columnas">
+          <div>
+            <ul>
+              <li class="fragment">Contenedor de <strong>IoC / Inyección de Dependencias</strong></li>
+              <li class="fragment">Basado en <strong>POJOs</strong> (objetos Java simples, sin herencias forzadas)</li>
+              <li class="fragment">Programación Orientada a Aspectos (<strong>AOP</strong>) para logging, transacciones, seguridad</li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li class="fragment">Altamente <strong>modular</strong>: se usa solo lo que se necesita</li>
+              <li class="fragment">Se integra con casi cualquier tecnología (JDBC, JPA, mensajería, testing)</li>
+              <li class="fragment">Facilita las <strong>pruebas unitarias</strong> al desacoplar dependencias</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Módulos más importantes</h2>
+        <table>
+          <thead>
+            <tr><th>Módulo</th><th>Para qué sirve</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Spring Core</strong></td><td>El contenedor de IoC / Inyección de Dependencias; base de todo lo demás.</td></tr>
+            <tr><td><strong>Spring MVC</strong></td><td>Implementación del patrón MVC (Práctica 8) para aplicaciones web y APIs REST.</td></tr>
+            <tr><td><strong>Spring Boot</strong></td><td>Auto-configuración y arranque rápido: convierte días de configuración en minutos.</td></tr>
+            <tr><td><strong>Spring Data</strong></td><td>Simplifica el acceso a bases de datos (JPA, MongoDB...) con repositorios casi sin código.</td></tr>
+            <tr><td><strong>Spring Security</strong></td><td>Autenticación y autorización (login, roles, JWT, OAuth2) de forma declarativa.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Spring Core + Spring MVC, en código</h2>
+        <pre><code data-trim data-line-numbers="1-2|4-9|11-14" class="language-java">
+@Component // Spring gestiona el ciclo de vida de esta clase (Core/IoC)
+public class TareaService { /* lógica de negocio, el "Modelo" */ }
+
+@RestController // Spring MVC: expone un controlador HTTP
+@RequestMapping("/api/tareas")
+public class TareaController {
+    @Autowired private TareaService servicio; // Inyección de Dependencias
+
+    @PostMapping
+    public Tarea crear(@RequestBody Tarea tarea) {
+        return servicio.guardar(tarea); // mismo flujo que vimos en la Práctica 7
+    }
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Usos reales de Spring</h2>
+        <ul>
+          <li class="fragment">Sistemas <strong>bancarios y de seguros</strong>: transacciones complejas, alta necesidad de seguridad (Spring Security) y de auditoría.</li>
+          <li class="fragment"><strong>E-commerce</strong> a gran escala: catálogos, pedidos y pagos sobre Spring Boot + Spring Data.</li>
+          <li class="fragment"><strong>Microservicios empresariales</strong>: Spring Boot + Spring Cloud son el estándar de facto para arquitecturas de microservicios en Java.</li>
+          <li class="fragment">Empresas como <strong>Netflix</strong> popularizaron patrones de microservicios que se integran de forma nativa con el ecosistema Spring.</li>
+        </ul>
+      </section>
+
+      <section data-background-gradient="linear-gradient(120deg, #293340 0%, #17499f 65%)">
+        <h2 style="color:white">Conclusión personal</h2>
+        <p style="color:#dbe4f5; max-width:800px; margin:0 auto">
+          Spring no inventó la Inyección de Dependencias ni el patrón MVC — los popularizó y
+          los empaquetó de forma productiva para el ecosistema Java empresarial. Entender
+          primero los conceptos base (MVC, IoC) antes que la "magia" de Spring Boot hace que
+          sus anotaciones (<code>@Autowired</code>, <code>@RestController</code>) se sientan
+          como atajos razonados, no como sintaxis memorizada sin entender qué resuelven.
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      controls: true,
+      progress: true,
+      slideNumber: true,
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+</html>

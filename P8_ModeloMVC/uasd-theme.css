@@ -1,0 +1,154 @@
+/*
+ * Tema compartido para las presentaciones reveal.js de la Práctica 6
+ * (Formatos de Transporte de Datos), reutilizando la paleta de la UASD
+ * ya usada en las prácticas 3-5.
+ */
+:root {
+  --azul-primario: #17499f;
+  --azul-brillante: #0077ff;
+  --azul-oscuro: #293340;
+  --dorado: #b38e05;
+  --gris-claro: #f5f7fb;
+  --gris-borde: #e2e2e2;
+  --blanco: #ffffff;
+}
+
+.reveal {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--azul-oscuro);
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  color: var(--azul-primario);
+  font-weight: bold;
+  text-transform: none;
+}
+
+.reveal h1 {
+  font-size: 2.1em;
+}
+
+.reveal section.portada h1,
+.reveal section.portada h2,
+.reveal section.portada h3,
+.reveal section.portada p {
+  color: var(--blanco);
+}
+
+.reveal section.portada {
+  text-align: left;
+}
+
+.cabecera-marca {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+}
+
+.cabecera-marca img {
+  height: 48px;
+}
+
+.cabecera-marca span {
+  color: var(--blanco);
+  font-weight: bold;
+  font-size: 0.95rem;
+  border-left: 2px solid var(--dorado);
+  padding-left: 0.7rem;
+}
+
+.reveal .progress {
+  color: var(--dorado);
+}
+
+.reveal .slide-number {
+  background-color: var(--azul-oscuro);
+  color: var(--blanco);
+}
+
+.reveal ul,
+.reveal ol {
+  display: block;
+}
+
+.reveal li {
+  margin-bottom: 0.4em;
+}
+
+.reveal table {
+  border-collapse: collapse;
+  font-size: 0.78em;
+}
+
+.reveal table th {
+  background-color: var(--azul-primario);
+  color: var(--blanco);
+  padding: 0.5em 0.8em;
+}
+
+.reveal table td {
+  padding: 0.5em 0.8em;
+  border: 1px solid var(--gris-borde);
+}
+
+.reveal table tr:nth-child(even) td {
+  background-color: var(--gris-claro);
+}
+
+.etiqueta-dorada {
+  display: inline-block;
+  background-color: var(--dorado);
+  color: var(--blanco);
+  font-size: 0.5em;
+  font-weight: bold;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  margin-bottom: 0.8rem;
+}
+
+.reveal .hallazgo {
+  background-color: #fff8e1;
+  border-left: 4px solid var(--dorado);
+  padding: 0.8rem 1.2rem;
+  text-align: left;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.75em;
+}
+
+.reveal pre {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  width: 100%;
+}
+
+.reveal pre code {
+  font-size: 0.68em;
+  max-height: 480px;
+}
+
+.reveal .pie-logo {
+  position: fixed;
+  bottom: 14px;
+  left: 18px;
+  height: 22px;
+  opacity: 0.85;
+  z-index: 10;
+}
+
+.reveal .columnas {
+  display: flex;
+  gap: 1.5rem;
+  text-align: left;
+  align-items: flex-start;
+}
+
+.reveal .columnas > div {
+  flex: 1;
+}
+
+.reveal .columnas h4 {
+  color: var(--azul-primario);
+  margin-top: 0;
+}
