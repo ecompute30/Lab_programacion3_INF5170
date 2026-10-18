@@ -1,42 +1,51 @@
 # Práctica 9 — Servicios Web: Validador de Cédula Dominicana
 
-Aplicación web que valida una cédula dominicana con el **algoritmo del módulo 10** y, además,
-la contrasta con la [API oficial del gobierno dominicano](https://api.digital.gob.do/v3/cedulas/40225999348/validate).
+Aplicación **100% cliente** (HTML + CSS + JavaScript plano, sin backend ni build step) que
+valida una cédula dominicana con el **algoritmo del módulo 10** y, además, intenta
+contrastarla en vivo con la [API oficial del gobierno dominicano](https://api.digital.gob.do/v3/cedulas/40225999348/validate)
+directamente desde el navegador.
 
-## Stack
+👉 **Demo en GitHub Pages**: https://ecompute30.github.io/Lab_programacion3_INF5170/P9_ValidadorCedula/
 
-- **Frontend**: HTML + CSS + JavaScript plano (vanilla JS), con máscara de entrada
-  (`000-0000000-0`) y animaciones de resultado (rebote en válido, sacudida en inválido).
-- **Backend**: Node.js + TypeScript + Express. Sirve el frontend y expone
-  `GET /api/validar/:cedula`.
+## Por qué ya no hay backend
 
-## ¿Por qué un backend si el frontend es "vanilla JS"?
+Una primera versión de esta práctica usaba un pequeño servidor Node/TypeScript como *proxy*
+hacia la API oficial, porque esa API no envía cabeceras CORS y un `fetch()` directo desde el
+navegador sería bloqueado. Ese backend funcionaba, pero impedía publicar la app en GitHub Pages
+(que solo sirve archivos estáticos).
 
-La API oficial del gobierno (`api.digital.gob.do`) no envía cabeceras CORS, así que una
-llamada directa desde el navegador (JavaScript del cliente) sería bloqueada. Por eso el
-pequeño backend en Node/TypeScript actúa como *proxy* del mismo origen: el navegador solo
-habla con nuestro propio servidor, y es el servidor quien llama a la API oficial. El frontend
-en sí sigue siendo HTML/CSS/JS plano, sin ningún framework.
+La versión actual elimina el backend por completo:
+
+1. El algoritmo del **módulo 10** corre enteramente en el navegador ([`modulo10.js`](modulo10.js))
+   y es la fuente de verdad para decidir si la cédula es válida.
+2. [`app.js`](app.js) **sí intenta** la llamada directa a la API oficial desde el cliente.
+3. Si el navegador la bloquea por CORS (lo normal fuera de `api.digital.gob.do`), el error se
+   captura y se muestra como una advertencia clara —
+   *"API oficial: no disponible desde este navegador (bloqueada por CORS o sin conexión)"* —
+   en vez de fallar o quedarse colgado. El resultado del algoritmo local sigue siendo el
+   veredicto final de "válida / inválida".
+
+Esto se comprobó con un navegador real (Playwright): al servir la app desde un origen distinto
+a `api.digital.gob.do`, la consola muestra efectivamente el bloqueo de CORS
+(`"has been blocked by CORS policy"`), y la app responde con el aviso y el resultado local
+correcto, sin romperse.
 
 ## Algoritmo del módulo 10
 
-Implementado en [`src/modulo10.ts`](src/modulo10.ts): cada uno de los primeros 10 dígitos se
-multiplica alternadamente por 1 y 2 (si el producto tiene dos cifras, se suman sus dígitos);
-la suma total determina el dígito verificador esperado, que se compara contra el dígito 11.
+Implementado en [`modulo10.js`](modulo10.js): cada uno de los primeros 10 dígitos se multiplica
+alternadamente por 1 y 2 (si el producto tiene dos cifras, se suman sus dígitos); la suma total
+determina el dígito verificador esperado, que se compara contra el dígito 11.
 
-**Verificación empírica**: antes de integrarlo, se probó este algoritmo contra la API oficial
-con 60 cédulas construidas aleatoriamente (dígito verificador calculado localmente) — las 60
-coincidieron exactamente con el resultado de la API real, confirmando que la implementación
-es correcta.
+**Verificación empírica**: este algoritmo se probó contra la API oficial con 60 cédulas
+construidas aleatoriamente (dígito verificador calculado localmente) — las 60 coincidieron
+exactamente con el resultado de la API real, confirmando que la implementación es correcta.
 
 ## Cómo ejecutar
 
-```bash
-npm install
-npm run dev     # modo desarrollo
-# o bien:
-npm run build && npm start
-```
+No requiere instalación. Basta con abrir [`index.html`](index.html) en el navegador, o servir
+la carpeta con cualquier servidor estático:
 
-Abre `http://localhost:3001`, escribe una cédula (el formato se aplica automáticamente) y
-pulsa "Validar".
+```bash
+python -m http.server 8080
+# o: npx serve .
+```

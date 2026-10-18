@@ -1,3 +1,5 @@
+import { repositorio } from './repositorios.js';
+
 const formulario = document.getElementById('formulario-tarea');
 const campoId = document.getElementById('tarea-id');
 const campoCompletada = document.getElementById('tarea-completada');
@@ -9,6 +11,7 @@ const botonCancelar = document.getElementById('boton-cancelar');
 const listaTareas = document.getElementById('lista-tareas');
 const mensajeVacio = document.getElementById('mensaje-vacio');
 const mensajeError = document.getElementById('mensaje-error');
+const avisoModo = document.getElementById('aviso-modo');
 
 function mostrarError(texto) {
   mensajeError.textContent = texto;
@@ -77,12 +80,20 @@ function crearElementoTarea(tarea) {
   return li;
 }
 
+function actualizarAvisoModo() {
+  if (repositorio.modoActivo() === 'localStorage') {
+    avisoModo.textContent = '💾 Guardando en este navegador (localStorage).';
+    avisoModo.hidden = false;
+  } else {
+    avisoModo.hidden = true;
+  }
+}
+
 async function cargarTareas() {
   limpiarError();
   try {
-    const respuesta = await fetch('/api/tareas');
-    if (!respuesta.ok) throw new Error('No se pudieron cargar las tareas.');
-    const tareas = await respuesta.json();
+    const tareas = await repositorio.listar();
+    actualizarAvisoModo();
 
     listaTareas.innerHTML = '';
     mensajeVacio.hidden = tareas.length > 0;
@@ -96,12 +107,11 @@ async function cargarTareas() {
 
 async function alternarCompletada(tarea, completada) {
   try {
-    const respuesta = await fetch(`/api/tareas/${tarea.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ titulo: tarea.titulo, descripcion: tarea.descripcion, completada }),
+    await repositorio.actualizar(tarea.id, {
+      titulo: tarea.titulo,
+      descripcion: tarea.descripcion,
+      completada,
     });
-    if (!respuesta.ok) throw new Error('No se pudo actualizar la tarea.');
     await cargarTareas();
   } catch (error) {
     mostrarError(error.message);
@@ -111,8 +121,7 @@ async function alternarCompletada(tarea, completada) {
 async function eliminarTarea(tarea) {
   if (!confirm(`¿Eliminar la tarea "${tarea.titulo}"?`)) return;
   try {
-    const respuesta = await fetch(`/api/tareas/${tarea.id}`, { method: 'DELETE' });
-    if (!respuesta.ok && respuesta.status !== 204) throw new Error('No se pudo eliminar la tarea.');
+    await repositorio.borrar(tarea.id);
     if (campoId.value === String(tarea.id)) salirDeModoEdicion();
     await cargarTareas();
   } catch (error) {
@@ -133,17 +142,13 @@ formulario.addEventListener('submit', async (evento) => {
 
   const idEnEdicion = campoId.value;
   const esEdicion = idEnEdicion !== '';
+  const completada = campoCompletada.value === 'true';
 
   try {
-    const respuesta = await fetch(esEdicion ? `/api/tareas/${idEnEdicion}` : '/api/tareas', {
-      method: esEdicion ? 'PUT' : 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ titulo, descripcion, completada: campoCompletada.value === 'true' }),
-    });
-
-    if (!respuesta.ok) {
-      const cuerpo = await respuesta.json().catch(() => ({}));
-      throw new Error(cuerpo.error || 'No se pudo guardar la tarea.');
+    if (esEdicion) {
+      await repositorio.actualizar(Number(idEnEdicion), { titulo, descripcion, completada });
+    } else {
+      await repositorio.crear({ titulo, descripcion });
     }
 
     salirDeModoEdicion();

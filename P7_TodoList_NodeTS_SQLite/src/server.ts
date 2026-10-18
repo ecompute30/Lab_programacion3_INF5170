@@ -12,6 +12,19 @@ const app = express();
 const PUERTO = Number(process.env.PORT) || 3000;
 
 app.use(express.json());
+
+// Sirve una configuración dinámica ANTES de los archivos estáticos: en
+// desarrollo local (con este servidor corriendo) el modo por defecto es
+// "api", salvo que la variable de entorno STORAGE_MODE diga lo contrario.
+// El archivo público/config.js (el que queda en el repositorio) solo lo
+// usa GitHub Pages, que no puede ejecutar esta ruta dinámica — por eso ahí
+// el valor por defecto es "localStorage" (ver public/config.js).
+app.get('/config.js', (_req, res) => {
+  const modo = process.env.STORAGE_MODE === 'localStorage' ? 'localStorage' : 'api';
+  res.type('application/javascript');
+  res.send(`window.APP_CONFIG = { storageMode: ${JSON.stringify(modo)} };`);
+});
+
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 function parsearId(req: Request, res: Response): number | null {

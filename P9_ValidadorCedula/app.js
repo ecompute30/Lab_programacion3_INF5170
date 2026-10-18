@@ -1,3 +1,5 @@
+const URL_API_OFICIAL = 'https://api.digital.gob.do/v3/cedulas';
+
 const formulario = document.getElementById('formulario-cedula');
 const campoCedula = document.getElementById('campo-cedula');
 const botonValidar = document.getElementById('boton-validar');
@@ -27,7 +29,29 @@ campoCedula.addEventListener('input', () => {
   }
 });
 
-function mostrarResultado({ formatoValido, modulo10Valida, apiOficialValida, mensaje, cedula }) {
+/**
+ * Intenta consultar la API oficial directamente desde el navegador. Esa API
+ * no envía cabeceras CORS, así que el navegador bloqueará esta llamada
+ * cuando la página se sirva desde un origen distinto (como GitHub Pages).
+ * Por eso se captura el error y se trata como "no disponible" en vez de
+ * fallar: el resultado del algoritmo módulo 10 (local, siempre disponible)
+ * sigue siendo la fuente de verdad para decidir si la cédula es válida.
+ */
+async function consultarApiOficial(cedula) {
+  try {
+    const respuesta = await fetch(`${URL_API_OFICIAL}/${cedula}/validate`);
+    if (!respuesta.ok) return { disponible: false };
+    const datos = await respuesta.json();
+    return { disponible: true, valida: Boolean(datos.valid) };
+  } catch (error) {
+    // Típicamente un bloqueo de CORS (TypeError: Failed to fetch) o falta de
+    // conexión; ambos se muestran igual: "API oficial no disponible".
+    console.warn('No se pudo consultar la API oficial (posible bloqueo CORS):', error.message);
+    return { disponible: false };
+  }
+}
+
+function mostrarResultado({ formatoValido, modulo10Valida, mensaje, cedula }, resultadoApi) {
   divResultado.hidden = false;
   divResultado.classList.remove('valido', 'invalido');
 
@@ -38,7 +62,6 @@ function mostrarResultado({ formatoValido, modulo10Valida, apiOficialValida, men
   textoResultado.textContent = esValida ? 'Cédula válida' : 'Cédula inválida';
 
   detalleResultado.innerHTML = '';
-
   const agregarDetalle = (texto) => {
     const li = document.createElement('li');
     li.textContent = texto;
@@ -52,10 +75,10 @@ function mostrarResultado({ formatoValido, modulo10Valida, apiOficialValida, men
 
   agregarDetalle(`Algoritmo módulo 10: ${modulo10Valida ? 'cumple ✓' : 'no cumple ✗'}`);
 
-  if (apiOficialValida === null) {
-    agregarDetalle('API oficial del gobierno: no disponible en este momento.');
+  if (!resultadoApi || !resultadoApi.disponible) {
+    agregarDetalle('⚠️ API oficial: no disponible desde este navegador (bloqueada por CORS o sin conexión).');
   } else {
-    agregarDetalle(`API oficial del gobierno: ${apiOficialValida ? 'válida ✓' : 'inválida ✗'}`);
+    agregarDetalle(`API oficial del gobierno: ${resultadoApi.valida ? 'válida ✓' : 'inválida ✗'}`);
   }
 
   agregarDetalle(`Cédula consultada: ${cedula}`);
@@ -64,35 +87,19 @@ function mostrarResultado({ formatoValido, modulo10Valida, apiOficialValida, men
 formulario.addEventListener('submit', async (evento) => {
   evento.preventDefault();
 
-  const digitos = campoCedula.value.replace(/\D/g, '');
-  if (digitos.length !== 11) {
-    mostrarResultado({
-      formatoValido: false,
-      modulo10Valida: false,
-      apiOficialValida: null,
-      mensaje: 'La cédula debe tener exactamente 11 dígitos (formato 000-0000000-0).',
-      cedula: digitos,
-    });
+  const resultadoLocal = validarModulo10(campoCedula.value);
+
+  if (!resultadoLocal.formatoValido) {
+    mostrarResultado(resultadoLocal, null);
     return;
   }
 
   botonValidar.disabled = true;
   botonValidar.textContent = 'Validando...';
 
-  try {
-    const respuesta = await fetch(`/api/validar/${digitos}`);
-    const datos = await respuesta.json();
-    mostrarResultado(datos);
-  } catch (error) {
-    mostrarResultado({
-      formatoValido: false,
-      modulo10Valida: false,
-      apiOficialValida: null,
-      mensaje: 'No se pudo contactar al servidor de validación.',
-      cedula: digitos,
-    });
-  } finally {
-    botonValidar.disabled = false;
-    botonValidar.textContent = 'Validar';
-  }
+  const resultadoApi = await consultarApiOficial(resultadoLocal.cedula);
+  mostrarResultado(resultadoLocal, resultadoApi);
+
+  botonValidar.disabled = false;
+  botonValidar.textContent = 'Validar';
 });
