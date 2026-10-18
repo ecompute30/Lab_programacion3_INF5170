@@ -2,6 +2,8 @@
 **Curso:** Lab Lenguaje de Program III (Radhames Silverio Gonzalez)  
 **Unidad:** UNIDAD 1 — Laboratorio de Programación Web
 **Estudiante:** Edwin A. Roman Seberino (100732067)
+
+🗂️ **Portafolio de prácticas** (Vue 3 SPA con búsqueda y previsualización de todas las prácticas) — [Ver en línea](https://ecompute30.github.io/Lab_programacion3_INF5170/) · [Código fuente](Portafolio/)
 ---
  
 ## Estado General
@@ -46,7 +48,7 @@
  
 ## Entregables Finales
  
-- ⏳ **Proyecto Final** *(Obligatorio — disponible desde inicio del semestre)*
+- ⏳ **Proyecto Final** *(Obligatorio — disponible desde inicio del semestre)* — ya tiene su espacio reservado en el portafolio; basta con completar sus URL en [`Portafolio/src/data/proyectoFinal.ts`](Portafolio/src/data/proyectoFinal.ts)
 - ⏳ **Trabajo Individual** — INF-5170 Lab de Programación III
 - ⏳ **Evaluación General** *(Cuestionario)*
 ---
