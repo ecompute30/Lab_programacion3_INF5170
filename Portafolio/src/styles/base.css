@@ -1,0 +1,223 @@
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/public-sans';
+
+:root {
+  --azul-uasd: #17499f;
+  --azul-tinta: #0d2a5c;
+  --azul-vivo: #0077ff;
+  --azul-niebla: #e8eff9;
+  --papel: #f5f7fb;
+  --blanco: #ffffff;
+  --tinta: #293340;
+  --tinta-suave: #5b6676;
+  --borde: #e1e7f0;
+  --dorado: #b38e05;
+  --dorado-suave: #f7f0d9;
+  --rojo: #b3261e;
+  --rojo-suave: #fdecea;
+  --verde: #1e7a46;
+
+  --fuente-titulos: 'Bricolage Grotesque Variable', 'Segoe UI', sans-serif;
+  --fuente-texto: 'Public Sans Variable', 'Segoe UI', Arial, sans-serif;
+
+  --radio-tarjeta: 18px;
+  --radio-control: 10px;
+  --sombra-reposo: 0 1px 2px rgb(13 42 92 / 0.06), 0 4px 14px rgb(13 42 92 / 0.05);
+  --sombra-elevada: 0 2px 4px rgb(13 42 92 / 0.06), 0 14px 32px rgb(13 42 92 / 0.12);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--tinta);
+  background-color: var(--papel);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  line-height: 1.15;
+  margin: 0;
+  color: var(--azul-tinta);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--azul-uasd);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--azul-vivo);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Botones compartidos por todas las vistas */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border: 1px solid transparent;
+  border-radius: var(--radio-control);
+  padding: 0.6rem 1.05rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 120ms var(--ease-out);
+}
+
+.boton:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.boton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.boton-primario {
+  background-color: var(--azul-uasd);
+  color: var(--blanco);
+}
+
+.boton-primario:hover:not(:disabled) {
+  background-color: var(--azul-tinta);
+}
+
+.boton-secundario {
+  background-color: var(--blanco);
+  border-color: var(--borde);
+  color: var(--azul-tinta);
+}
+
+.boton-secundario:hover:not(:disabled) {
+  border-color: var(--azul-uasd);
+  color: var(--azul-uasd);
+}
+
+.boton-fantasma {
+  background: none;
+  color: var(--tinta-suave);
+}
+
+.boton-fantasma:hover:not(:disabled) {
+  color: var(--azul-uasd);
+  background-color: var(--azul-niebla);
+}
+
+/* Campos de formulario compartidos */
+.campo {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.campo-etiqueta {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+.campo-entrada {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-control);
+  background-color: var(--blanco);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.campo-entrada:hover {
+  border-color: #c5d0e0;
+}
+
+.campo-entrada:focus {
+  outline: none;
+  border-color: var(--azul-uasd);
+  box-shadow: 0 0 0 3px rgb(23 73 159 / 0.18);
+}
+
+.campo-ayuda {
+  font-size: 0.8rem;
+  color: var(--tinta-suave);
+}
+
+.mensaje {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--radio-control);
+  font-size: 0.9rem;
+}
+
+.mensaje-error {
+  background-color: var(--rojo-suave);
+  color: var(--rojo);
+}
+
+.mensaje-exito {
+  background-color: #e6f4ec;
+  color: var(--verde);
+}
+
+.girando {
+  animation: girar 800ms linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
