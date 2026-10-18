@@ -1,0 +1,333 @@
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/public-sans';
+
+:root {
+  --azul-uasd: #17499f;
+  --azul-tinta: #0d2a5c;
+  --azul-vivo: #0077ff;
+  --azul-niebla: #e8eff9;
+  --papel: #f5f7fb;
+  --blanco: #ffffff;
+  --tinta: #293340;
+  --tinta-suave: #5b6676;
+  --borde: #e1e7f0;
+  --dorado: #b38e05;
+  --dorado-suave: #f7f0d9;
+  --rojo: #b3261e;
+  --rojo-suave: #fdecea;
+  --verde: #1e7a46;
+
+  --fuente-titulos: 'Bricolage Grotesque Variable', 'Segoe UI', sans-serif;
+  --fuente-texto: 'Public Sans Variable', 'Segoe UI', Arial, sans-serif;
+
+  --radio-tarjeta: 18px;
+  --radio-control: 10px;
+  --sombra-reposo: 0 1px 2px rgb(13 42 92 / 0.06), 0 4px 14px rgb(13 42 92 / 0.05);
+  --sombra-elevada: 0 2px 4px rgb(13 42 92 / 0.06), 0 14px 32px rgb(13 42 92 / 0.12);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--tinta);
+  background-color: var(--papel);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  line-height: 1.15;
+  margin: 0;
+  color: var(--azul-tinta);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--azul-uasd);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--azul-vivo);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Botones compartidos por todas las vistas */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border: 1px solid transparent;
+  border-radius: var(--radio-control);
+  padding: 0.6rem 1.05rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 120ms var(--ease-out);
+}
+
+.boton:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.boton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.boton-primario {
+  background-color: var(--azul-uasd);
+  color: var(--blanco);
+}
+
+.boton-primario:hover:not(:disabled) {
+  background-color: var(--azul-tinta);
+}
+
+.boton-secundario {
+  background-color: var(--blanco);
+  border-color: var(--borde);
+  color: var(--azul-tinta);
+}
+
+.boton-secundario:hover:not(:disabled) {
+  border-color: var(--azul-uasd);
+  color: var(--azul-uasd);
+}
+
+.boton-fantasma {
+  background: none;
+  color: var(--tinta-suave);
+}
+
+.boton-fantasma:hover:not(:disabled) {
+  color: var(--azul-uasd);
+  background-color: var(--azul-niebla);
+}
+
+/* Campos de formulario compartidos */
+.campo {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.campo-etiqueta {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+.campo-entrada {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-control);
+  background-color: var(--blanco);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.campo-entrada:hover {
+  border-color: #c5d0e0;
+}
+
+.campo-entrada:focus {
+  outline: none;
+  border-color: var(--azul-uasd);
+  box-shadow: 0 0 0 3px rgb(23 73 159 / 0.18);
+}
+
+.campo-ayuda {
+  font-size: 0.8rem;
+  color: var(--tinta-suave);
+}
+
+.mensaje {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--radio-control);
+  font-size: 0.9rem;
+}
+
+.mensaje-error {
+  background-color: var(--rojo-suave);
+  color: var(--rojo);
+}
+
+.mensaje-exito {
+  background-color: #e6f4ec;
+  color: var(--verde);
+}
+
+.girando {
+  animation: girar 800ms linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Tokens y estilos globales del chat ---------- */
+:root {
+  --ancho-hilo: 780px;
+  --ancho-panel: 290px;
+}
+
+/* El HTML de las respuestas se inyecta saneado (v-html), por eso sus estilos son globales. */
+.contenido-markdown > :first-child {
+  margin-top: 0;
+}
+
+.contenido-markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.contenido-markdown p,
+.contenido-markdown ul,
+.contenido-markdown ol,
+.contenido-markdown blockquote,
+.contenido-markdown pre,
+.contenido-markdown table {
+  margin: 0 0 0.75em;
+}
+
+.contenido-markdown ul,
+.contenido-markdown ol {
+  padding-left: 1.35em;
+}
+
+.contenido-markdown li + li {
+  margin-top: 0.3em;
+}
+
+.contenido-markdown h1,
+.contenido-markdown h2,
+.contenido-markdown h3,
+.contenido-markdown h4 {
+  font-size: 1.02em;
+  font-weight: 700;
+  margin: 0.9em 0 0.4em;
+  color: var(--azul-tinta);
+}
+
+.contenido-markdown blockquote {
+  padding: 0.5em 0.9em;
+  border: 1px solid rgb(179 142 5 / 0.35);
+  background-color: var(--dorado-suave);
+  border-radius: 8px;
+  color: var(--tinta);
+}
+
+.contenido-markdown code {
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 5px;
+  background-color: var(--papel);
+}
+
+.contenido-markdown table {
+  border-collapse: collapse;
+  font-size: 0.92em;
+}
+
+.contenido-markdown th,
+.contenido-markdown td {
+  padding: 0.35em 0.6em;
+  border: 1px solid var(--borde);
+  text-align: left;
+}
+
+.contenido-markdown .cita {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: baseline;
+  margin: 0 0.1em;
+  padding: 0.05em 0.5em 0.08em;
+  border: 1px solid rgb(23 73 159 / 0.25);
+  border-radius: 999px;
+  background-color: var(--azul-niebla);
+  color: var(--azul-uasd);
+  font-size: 0.82em;
+  font-weight: 600;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease, transform 120ms var(--ease-out);
+}
+
+.contenido-markdown .cita:hover {
+  background-color: var(--azul-uasd);
+  border-color: var(--azul-uasd);
+  color: var(--blanco);
+}
+
+.contenido-markdown .cita:active {
+  transform: scale(0.96);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--borde);
+  background-color: var(--papel);
+  font-size: 0.78rem;
+  color: var(--tinta-suave);
+  white-space: nowrap;
+}
