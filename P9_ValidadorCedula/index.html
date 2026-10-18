@@ -39,8 +39,8 @@
       <h2>¿Cómo funciona?</h2>
       <ol>
         <li>Escribe los 11 dígitos de la cédula; el formato <code>000-0000000-0</code> se aplica automáticamente.</li>
-        <li>El servidor calcula el dígito verificador con el <strong>algoritmo del módulo 10</strong> sobre los primeros 10 dígitos.</li>
-        <li>Además, consulta la <a href="https://api.digital.gob.do/v3/cedulas/40225999348/validate" target="_blank" rel="noopener noreferrer">API oficial del gobierno</a> como referencia (puede no estar disponible en todo momento; en ese caso solo se muestra el resultado local).</li>
+        <li>Tu propio navegador calcula el dígito verificador con el <strong>algoritmo del módulo 10</strong> — no hay backend, todo corre en el cliente.</li>
+        <li>Además, intenta consultar la <a href="https://api.digital.gob.do/v3/cedulas/40225999348/validate" target="_blank" rel="noopener noreferrer">API oficial del gobierno</a> directamente desde el navegador como referencia. Esa API no envía cabeceras CORS, así que si el navegador la bloquea, se avisa claramente y el resultado del algoritmo local sigue siendo la validación oficial de esta app.</li>
       </ol>
     </section>
   </main>
@@ -49,6 +49,7 @@
     <p>&copy; 2026 Edwin Alberto Roman Seberino. Práctica 9 — Validador de cédula (módulo 10).</p>
   </footer>
 
+  <script src="modulo10.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

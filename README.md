@@ -35,11 +35,11 @@
 - ✅ **Práctica 6 — Formatos de Transporte de Datos**
   - Tres presentaciones reveal.js (XML, JSON, AJAX) — [Ver presentaciones](https://ecompute30.github.io/Lab_programacion3_INF5170/P6_FormatosTransporteDatos/) · [Código fuente](P6_FormatosTransporteDatos/)
 - ✅ **Práctica 7 — Acceso a Base de Datos**
-  - Lista de Tareas (CRUD completo) — Node.js + TypeScript + Express + SQLite — [Código fuente](P7_TodoList_NodeTS_SQLite/)
+  - Lista de Tareas (CRUD completo) — Node.js + TypeScript + Express + SQLite, con modo `localStorage` transparente para poder verse sin backend — [Ver en línea](https://ecompute30.github.io/Lab_programacion3_INF5170/P7_TodoList_NodeTS_SQLite/public/) · [Código fuente](P7_TodoList_NodeTS_SQLite/)
 - ✅ **Práctica 8 — Modelo MVC**
   - MVC en el desarrollo web moderno: origen, evolución y uso actual — [Ver presentación](https://ecompute30.github.io/Lab_programacion3_INF5170/P8_ModeloMVC/) · [Código fuente](P8_ModeloMVC/)
 - ✅ **Práctica 9 — Servicios Web**
-  - Validador de cédula dominicana (algoritmo módulo 10 + API oficial) — Node.js + TypeScript — [Código fuente](P9_ValidadorCedula/)
+  - Validador de cédula dominicana (algoritmo módulo 10 + intento de API oficial en vivo) — 100% cliente, sin backend — [Ver en línea](https://ecompute30.github.io/Lab_programacion3_INF5170/P9_ValidadorCedula/) · [Código fuente](P9_ValidadorCedula/)
 - ✅ **Práctica 10 — Framework de Desarrollo / Control de Versiones**
   - Spring Framework — Describir funcionalidades del framework — [Ver presentación](https://ecompute30.github.io/Lab_programacion3_INF5170/P10_SpringFramework/) · [Código fuente](P10_SpringFramework/)
 ---

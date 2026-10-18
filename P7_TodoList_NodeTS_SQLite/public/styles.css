@@ -118,6 +118,16 @@ button {
   border: 1px solid var(--gris-borde);
 }
 
+.aviso-modo {
+  color: var(--azul-primario);
+  background-color: #e8f0fe;
+  border: 1px solid var(--azul-primario);
+  border-radius: 6px;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+}
+
 .mensaje-error {
   color: var(--rojo-error);
   background-color: #fbe9e7;
