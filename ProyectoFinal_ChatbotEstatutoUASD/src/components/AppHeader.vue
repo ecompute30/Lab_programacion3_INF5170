@@ -127,7 +127,8 @@ async function salir() {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.6rem clamp(0.9rem, 3vw, 1.5rem);
+  height: var(--alto-encabezado);
+  padding: 0 clamp(0.9rem, 3vw, 1.5rem);
   background-color: var(--azul-uasd);
   box-shadow: 0 1px 0 rgb(255 255 255 / 0.08), 0 6px 18px rgb(13 42 92 / 0.18);
 }

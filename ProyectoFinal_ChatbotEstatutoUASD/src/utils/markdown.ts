@@ -1,5 +1,6 @@
 import DOMPurify from 'dompurify'
 import { marked } from 'marked'
+import { RE_CITAS, interpretarCita } from '../services/llm/citas'
 
 /**
  * Markdown de las respuestas → HTML seguro. Las citas [Art. N] se convierten
@@ -21,16 +22,21 @@ const OPCIONES_PURIFICACION = {
   ALLOWED_URI_REGEXP: /^(?:https?:|mailto:|#)/i,
 }
 
-const RE_CITA = /\[Art\.?\s*(\d{1,3}(?:\s*(?:,|y)\s*\d{1,3})*)\]/gi
+const escapar = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
 function enlazarCitas(html: string) {
-  return html.replace(RE_CITA, (_coincidencia, lista: string) =>
-    lista
-      .split(/\s*(?:,|y)\s*/)
-      .filter(Boolean)
+  return html.replace(RE_CITAS, (...args) => {
+    const coincidencia = args[0] as string
+    const { etiqueta, numeros } = interpretarCita(args as unknown as RegExpMatchArray)
+    if (numeros.length === 0) return coincidencia
+    // Una sola cita conserva su detalle ("Art. 100, literal a"); varias se separan en un chip por artículo.
+    if (numeros.length === 1) {
+      return `<button type="button" class="cita" data-articulo="${numeros[0]}" title="Ver el artículo ${numeros[0]}">${escapar(etiqueta)}</button>`
+    }
+    return numeros
       .map((n) => `<button type="button" class="cita" data-articulo="${n}" title="Ver el artículo ${n}">Art. ${n}</button>`)
-      .join(' '),
-  )
+      .join(' ')
+  })
 }
 
 export function renderizarMarkdown(texto: string): string {

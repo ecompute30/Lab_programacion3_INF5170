@@ -182,7 +182,7 @@ Usted es «Primada», asistente del Estatuto Orgánico de la UASD.
         <li class="fragment">Script de build: extrae el texto por página, elimina encabezados y pies, une palabras cortadas por guion, detecta <em>Capítulo / Artículo / Párrafo / incisos</em>.</li>
         <li class="fragment">Resultado verificado: <strong>22 capítulos, 146 artículos continuos (1–146), 65 términos del glosario</strong>, cada uno con su número de página.</li>
         <li class="fragment">Artículos largos se subdividen (≤ 450 tokens) para que el contexto sea preciso; el glosario se penaliza para no desplazar a los artículos.</li>
-        <li class="fragment">Evaluación con las 35 preguntas del enunciado: ¿aparece un artículo del capítulo correcto entre los 5 primeros? BM25 solo: 35/35 (medida optimista: la regla definitoria se afinó con esas mismas preguntas).</li>
+        <li class="fragment">Evaluación con las 35 preguntas del enunciado: ¿aparece un artículo del capítulo correcto entre los 5 primeros? BM25 35/35 · vectorial 35/35 · híbrida 35/35 tras ajustar la fusión (k = 10, 40 candidatos). Medida optimista: los parámetros se afinaron con esas mismas preguntas.</li>
       </ul>
     </section>
 
@@ -206,7 +206,7 @@ Usted es «Primada», asistente del Estatuto Orgánico de la UASD.
           <tr><td>Corpus</td><td>146/146 artículos, sin faltantes ni duplicados; capítulos completos</td><td>Validaciones del script de build</td></tr>
           <tr><td>Recuperación</td><td>Acierto@5 con las 35 preguntas sugeridas (BM25, vectorial, híbrida)</td><td><code>npm run evaluar</code></td></tr>
           <tr><td>Interfaz</td><td>Login y permisos, citas, panel de artículo, seguimiento, persistencia, respaldo ante 429, cifrado de la clave, móvil</td><td>Playwright con la API de Gemini simulada (27 comprobaciones)</td></tr>
-          <tr><td>Extremo a extremo</td><td>Preguntas reales contra Gemini con la clave restringida</td><td>Manual, registrado en el documento técnico</td></tr>
+          <tr><td>Extremo a extremo</td><td>Respuestas reales de Gemini con citas, seguimiento, traza vectorial, scroll y pregunta fuera de alcance</td><td>Playwright con la clave real (12 comprobaciones)</td></tr>
           <tr><td>Diseño</td><td>Antipatrones visuales, movimiento, accesibilidad básica</td><td>Detector de <em>impeccable</em>, revisión de animaciones, teclado</td></tr>
         </tbody>
       </table>

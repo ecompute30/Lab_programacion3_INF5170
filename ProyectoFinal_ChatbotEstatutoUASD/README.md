@@ -90,11 +90,18 @@ src/views/         ChatView · ConfiguracionView (admin) · LoginView · CuentaV
 
 ## Verificación
 
-- `npm run evaluar`: con BM25 solo, 35/35 preguntas sugeridas tienen un artículo del capítulo
-  esperado entre los 5 primeros (la regla definitoria se ajustó con estas mismas preguntas, por lo
-  que la cifra es optimista; con embeddings se mide también la búsqueda híbrida).
-- Playwright (Chromium) con la API de Gemini simulada: login y permisos, estado vacío, respuesta con
-  citas y streaming, panel de artículo con enlace al PDF, preguntas de seguimiento con historial,
-  persistencia al recargar, respaldo ante 429, modal de 35 preguntas, cifrado de la clave, móvil.
+- `npm run evaluar` (acierto@5 con las 35 preguntas sugeridas): BM25 35/35, vectorial 35/35 e
+  híbrida 35/35 con `k` de RRF = 10 y 40 candidatos. Con el `k = 60` clásico la híbrida daba 33/35:
+  con solo dos listas, un artículo #1 en una de ellas perdía contra artículos mediocres presentes en
+  ambas. Tanto la regla definitoria como estos parámetros se ajustaron mirando estas mismas preguntas,
+  así que la cifra es optimista.
+- Playwright (Chromium), 27 comprobaciones con la API de Gemini simulada: login y permisos, estado
+  vacío, respuesta con citas y streaming, panel de artículo con enlace al PDF, seguimiento con
+  historial, persistencia al recargar, respaldo ante 429, modal de 35 preguntas, cifrado de la clave,
+  móvil. Más 12 comprobaciones reales contra Gemini con la clave del proyecto: respuestas redactadas
+  con citas (incluido un seguimiento), traza con búsqueda vectorial, scroll del hilo, pregunta ajena
+  al Estatuto rechazada con la frase fija, móvil.
+- Lección registrada: Gemini separa los eventos SSE con `\r\n\r\n`; un lector que solo busca `\n\n`
+  recibe la respuesta completa pero no extrae ningún texto (burbuja vacía).
 - Detector de `impeccable` sobre la UI: solo señala el acento dorado lateral, heredado a propósito
   del design system del Portafolio.

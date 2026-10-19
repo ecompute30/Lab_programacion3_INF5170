@@ -226,14 +226,15 @@ const cuerpo = [
   vineta('Detecta la estructura: 22 capítulos (incluidos dos escritos como "Capítulo VII:" y "Capítulo XIX"), 146 artículos continuos del 1 al 146, "Párrafos" e incisos, y el glosario de 65 términos aprobado por el Consejo Universitario.'),
   vineta('Subdivide los artículos largos en partes de hasta 450 tokens y produce 222 unidades de recuperación con su encabezado ("Artículo 34. Capítulo V: Del Consejo Universitario").'),
   vineta('Verifica que no falten ni se dupliquen artículos y guarda un hash del corpus; los embeddings se rechazan si no corresponden a la misma versión.'),
-  p('Para medir la recuperación se usan las 35 preguntas del enunciado, cada una asociada al capítulo donde debería hallarse la respuesta. El script evaluar-recuperacion.ts calcula el acierto@5: con búsqueda léxica BM25, 35 de 35 preguntas tienen un artículo del capítulo esperado entre los cinco primeros resultados. La cifra es optimista porque la regla que favorece artículos definitorios se ajustó observando estas mismas preguntas; la búsqueda híbrida con embeddings se evalúa con el mismo script.'),
+  p('Para medir la recuperación se usan las 35 preguntas del enunciado, cada una asociada al capítulo donde debería hallarse la respuesta. El script evaluar-recuperacion.ts calcula el acierto@5 (¿hay un artículo del capítulo esperado entre los cinco primeros resultados?). Resultados: BM25 35/35, vectorial 35/35 e híbrida 35/35. La híbrida requirió ajustar la fusión: con el valor clásico k = 60 de RRF daba 33/35, porque con solo dos listas un artículo que es primero en una de ellas pierde frente a artículos mediocres presentes en ambas; con k = 10 y 40 candidatos por lista el problema desaparece. La cifra es optimista porque tanto la regla que favorece artículos definitorios como estos parámetros se ajustaron observando estas mismas preguntas.'),
 
   h1('8. Pruebas realizadas'),
   tabla(
     ['Nivel', 'Qué se verificó', 'Herramienta'],
     [
       ['Corpus', '146/146 artículos sin faltantes ni duplicados; 22 capítulos con título completo; 65 términos del glosario', 'Validaciones del script de build'],
-      ['Recuperación', 'Acierto@5 con las 35 preguntas sugeridas', 'npm run evaluar'],
+      ['Recuperación', 'Acierto@5 con las 35 preguntas sugeridas: BM25, vectorial e híbrida en 35/35', 'npm run evaluar'],
+      ['Extremo a extremo (12 comprobaciones)', 'Respuestas reales de Gemini redactadas con citas (incluido un seguimiento), traza con búsqueda vectorial activa, desplazamiento del hilo en escritorio y móvil, pregunta ajena al Estatuto respondida con la frase fija', 'Playwright con la clave real del proyecto'],
       ['Tipos y build', 'Compilación sin errores de TypeScript ni de plantillas', 'vue-tsc + Vite'],
       ['Interfaz (27 comprobaciones)', 'Redirección al login; permisos de revisora y administrador; estado vacío; respuesta con citas y streaming; prompt del sistema con contexto; panel de artículo y enlace al PDF; navegación con teclado; seguimiento con historial; persistencia al recargar; respaldo ante 429; modal de 35 preguntas; clave cifrada (no aparece en texto plano); vista móvil', 'Playwright (Chromium) con la API de Gemini simulada'],
       ['Diseño', 'Antipatrones visuales y movimiento', 'Detector de impeccable; revisión manual de animaciones y reduced-motion'],

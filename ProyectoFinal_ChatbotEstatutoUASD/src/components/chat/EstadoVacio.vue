@@ -44,6 +44,7 @@ const saludo = computed(() => {
 <style scoped>
 .vacio {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   display: grid;
   place-items: center;

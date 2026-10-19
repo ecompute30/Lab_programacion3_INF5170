@@ -6,13 +6,14 @@ import type { Resultado } from './bm25.ts'
  * coseno sean comparables, por eso es la forma habitual de combinar búsqueda
  * léxica y semántica.
  */
-export function fusionarRRF(listas: Resultado[][], k = 60): Resultado[] {
+export function fusionarRRF(listas: Resultado[][], k = 60, pesos: number[] = []): Resultado[] {
   const puntajes = new Map<string, number>()
-  for (const lista of listas) {
+  listas.forEach((lista, indice) => {
+    const peso = pesos[indice] ?? 1
     lista.forEach((r, posicion) => {
-      puntajes.set(r.id, (puntajes.get(r.id) ?? 0) + 1 / (k + posicion + 1))
+      puntajes.set(r.id, (puntajes.get(r.id) ?? 0) + peso / (k + posicion + 1))
     })
-  }
+  })
   return [...puntajes.entries()]
     .map(([id, puntaje]) => ({ id, puntaje }))
     .sort((a, b) => b.puntaje - a.puntaje)

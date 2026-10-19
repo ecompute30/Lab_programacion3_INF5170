@@ -28,11 +28,4 @@ export function construirInstruccionSistema(fragmentos: FragmentoContexto[]): st
   return `${REGLAS}\n\n<contexto>\n${contexto}\n</contexto>`
 }
 
-/** Extrae los números de artículo citados como [Art. N] en una respuesta. */
-export function extraerCitas(texto: string): number[] {
-  const citas = new Set<number>()
-  for (const m of texto.matchAll(/\[Art\.?\s*(\d{1,3})(?:\s*(?:,|y)\s*(\d{1,3}))*\]/gi)) {
-    for (const n of m[0].matchAll(/\d{1,3}/g)) citas.add(Number(n[0]))
-  }
-  return [...citas]
-}
+export { extraerCitas } from './citas.ts'

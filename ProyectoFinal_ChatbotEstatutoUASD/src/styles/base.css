@@ -226,6 +226,7 @@ select {
 :root {
   --ancho-hilo: 780px;
   --ancho-panel: 290px;
+  --alto-encabezado: 58px;
 }
 
 /* El HTML de las respuestas se inyecta saneado (v-html), por eso sus estilos son globales. */

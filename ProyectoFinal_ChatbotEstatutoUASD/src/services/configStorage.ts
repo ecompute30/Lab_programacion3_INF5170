@@ -126,14 +126,17 @@ const VARIABLE_BUILD: Record<Exclude<IdProveedor, 'extractivo'>, string> = {
   groq: 'VITE_GROQ_API_KEY_B64',
 }
 
+/** Acepta la clave en base64 (lo previsto) o en claro, si el valor no decodifica a texto imprimible. */
 function claveDelBuild(proveedor: Exclude<IdProveedor, 'extractivo'>): string | null {
-  const codificada = env[VARIABLE_BUILD[proveedor]]
-  if (!codificada) return null
+  const valor = env[VARIABLE_BUILD[proveedor]]?.trim()
+  if (!valor) return null
   try {
-    return atob(codificada.trim()) || null
+    const decodificada = atob(valor)
+    if (decodificada && /^[\x21-\x7e]+$/.test(decodificada)) return decodificada
   } catch {
-    return null
+    // No era base64.
   }
+  return valor
 }
 
 /** Primero la clave guardada por el admin en este dispositivo; si no, la del build (base64); si no, ninguna. */

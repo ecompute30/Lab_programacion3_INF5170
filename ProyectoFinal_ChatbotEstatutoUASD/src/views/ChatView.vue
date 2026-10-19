@@ -104,11 +104,11 @@ function nuevaConversacion() {
 
 <style scoped>
 .chat {
-  flex: 1;
+  flex: none;
   display: grid;
   grid-template-columns: var(--ancho-panel) 1fr;
   min-height: 0;
-  height: calc(100dvh - 58px);
+  height: calc(100dvh - var(--alto-encabezado));
 }
 
 .hilo {
@@ -116,6 +116,7 @@ function nuevaConversacion() {
   flex-direction: column;
   min-width: 0;
   min-height: 0;
+  overflow: hidden;
   background-color: var(--papel);
 }
 

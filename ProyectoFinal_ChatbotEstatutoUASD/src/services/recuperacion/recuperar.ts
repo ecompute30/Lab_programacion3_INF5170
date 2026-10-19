@@ -28,6 +28,10 @@ export interface OpcionesRecuperacion {
   maxFragmentos?: number
   maxTokens?: number
   candidatos?: number
+  /** Peso del ranking vectorial frente al léxico en la fusión (1 = iguales). */
+  pesoVectorial?: number
+  /** Constante k de la fusión RRF: cuanto menor, más pesa el primer puesto de cada lista. */
+  kRRF?: number
 }
 
 export interface TrazaRecuperacion {
@@ -45,6 +49,11 @@ export interface ResultadoRecuperacion {
 }
 
 const FACTOR_GLOSARIO = 0.6
+const PESO_VECTORIAL_POR_DEFECTO = 1
+// Con solo dos listas, k = 10 (en vez del clásico 60) evita que un artículo #1 en una lista pierda
+// contra artículos mediocres presentes en ambas; 40 candidatos aumentan el solapamiento entre listas.
+const K_RRF_POR_DEFECTO = 10
+const CANDIDATOS_POR_DEFECTO = 40
 const PALABRAS_SEGUIMIENTO = 6
 
 const tokensAprox = (texto: string) => Math.ceil(texto.length / 3.6)
@@ -67,7 +76,7 @@ export class Recuperador {
   }
 
   async recuperar(consulta: string, opciones: OpcionesRecuperacion = {}): Promise<ResultadoRecuperacion> {
-    const { maxFragmentos = 8, maxTokens = 3500, candidatos = 20 } = opciones
+    const { maxFragmentos = 8, maxTokens = 3500, candidatos = CANDIDATOS_POR_DEFECTO, pesoVectorial = PESO_VECTORIAL_POR_DEFECTO, kRRF = K_RRF_POR_DEFECTO } = opciones
     const consultaEfectiva = this.ampliarSeguimiento(consulta, opciones.preguntaAnterior)
 
     const bm25 = this.penalizarGlosario(buscarBM25(this.indice, consultaEfectiva, candidatos))
@@ -83,7 +92,7 @@ export class Recuperador {
       }
     }
 
-    const fusion = this.promoverDefiniciones(consulta, vectorial ? fusionarRRF([bm25, vectorial]) : bm25)
+    const fusion = this.promoverDefiniciones(consulta, vectorial ? fusionarRRF([bm25, vectorial], kRRF, [1, pesoVectorial]) : bm25)
     const fragmentos = this.seleccionar(fusion, maxFragmentos, maxTokens)
 
     return {

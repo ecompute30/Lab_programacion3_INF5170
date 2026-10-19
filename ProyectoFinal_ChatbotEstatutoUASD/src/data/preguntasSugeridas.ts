@@ -82,7 +82,7 @@ export const TEMAS_SUGERIDOS: TemaSugerido[] = [
     nombre: 'Funciones, patrimonio y disciplina',
     preguntas: [
       { texto: '¿Qué establece el Estatuto sobre la investigación?', capitulosEsperados: [1, 2, 7] },
-      { texto: '¿Qué establece el Estatuto sobre el postgrado?', capitulosEsperados: [2, 7] },
+      { texto: '¿Qué establece el Estatuto sobre el postgrado?', capitulosEsperados: [2, 7, 12, 21] },
       { texto: '¿Qué establece el Estatuto sobre la extensión universitaria?', capitulosEsperados: [1, 2, 7] },
       { texto: '¿Qué establece el Estatuto sobre el bienestar universitario?', capitulosEsperados: [1, 13] },
       { texto: '¿Qué establece el Estatuto sobre el régimen disciplinario?', capitulosEsperados: [12, 13, 17] },

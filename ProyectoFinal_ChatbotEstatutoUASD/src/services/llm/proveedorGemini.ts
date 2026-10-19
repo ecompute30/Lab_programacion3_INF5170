@@ -106,8 +106,9 @@ export class ProveedorGemini implements ProveedorLLM {
       if (error instanceof DOMException && error.name === 'AbortError') throw new ErrorProveedor('Respuesta cancelada.', 'cancelado', this.id)
       throw new ErrorProveedor('Se interrumpió el flujo de respuesta de Gemini.', 'red', this.id)
     }
-    if (!texto && motivoFin && motivoFin !== 'STOP') {
-      throw new ErrorProveedor(`Gemini terminó sin texto (${motivoFin}).`, 'bloqueado', this.id)
+    if (!texto.trim()) {
+      const motivo = motivoFin && motivoFin !== 'STOP' ? motivoFin : 'respuesta vacía'
+      throw new ErrorProveedor(`Gemini terminó sin texto (${motivo}).`, motivoFin === 'MAX_TOKENS' ? 'otro' : 'bloqueado', this.id)
     }
     return { texto, proveedor: this.id, modelo: this.modelo, tokensEntrada, tokensSalida, motivoFin }
   }
