@@ -48,9 +48,9 @@
  
 ## Entregables Finales
  
-- ⏳ **Proyecto Final** *(Obligatorio — disponible desde inicio del semestre)* — ya tiene su espacio reservado en el portafolio; basta con completar sus URL en [`Portafolio/src/data/proyectoFinal.ts`](Portafolio/src/data/proyectoFinal.ts)
+- ✅ **Proyecto Final** — Primada, asistente con IA del Estatuto Orgánico de la UASD (RAG en el navegador: BM25 + embeddings, Gemini con respaldo, sin backend) — [Ver en línea](https://ecompute30.github.io/Lab_programacion3_INF5170/ProyectoFinal_ChatbotEstatutoUASD/dist/) · [Presentación](https://ecompute30.github.io/Lab_programacion3_INF5170/ProyectoFinal_ChatbotEstatutoUASD/dist/presentacion/) · [Documento técnico](ProyectoFinal_ChatbotEstatutoUASD/docs/Documento-tecnico.docx) · [Código fuente](ProyectoFinal_ChatbotEstatutoUASD/)
 - ⏳ **Trabajo Individual** — INF-5170 Lab de Programación III
 - ⏳ **Evaluación General** *(Cuestionario)*
 ---
  
-*Última actualización: Octubre 2026 — Completado hasta Práctica 10*
+*Última actualización: Octubre 2026 — Prácticas 0–10 y Proyecto Final completados*

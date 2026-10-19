@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primada — Presentación del proyecto final INF-5170</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/monokai.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul: #17499f;
+      --tinta: #0d2a5c;
+      --niebla: #e8eff9;
+      --dorado: #b38e05;
+      --dorado-suave: #f7f0d9;
+      --gris: #5b6676;
+      --r-background-color: #ffffff;
+      --r-main-font: 'Public Sans', 'Segoe UI', sans-serif;
+      --r-heading-font: 'Bricolage Grotesque', 'Segoe UI', sans-serif;
+      --r-heading-color: var(--tinta);
+      --r-main-color: #293340;
+      --r-link-color: var(--azul);
+      --r-main-font-size: 30px;
+    }
+    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; letter-spacing: -0.02em; font-weight: 700; }
+    .reveal h2 { font-size: 1.7em; margin-bottom: 0.5em; }
+    .reveal section { text-align: left; }
+    .reveal .centro { text-align: center; }
+    .reveal p, .reveal li { line-height: 1.45; }
+    .reveal ul, .reveal ol { display: block; margin-left: 1em; }
+    .reveal li { margin-bottom: 0.3em; }
+    .reveal small { color: var(--gris); }
+    .reveal .portada { background: linear-gradient(160deg, var(--azul), var(--tinta)); color: #fff; padding: 2em; border-radius: 24px; }
+    .reveal .portada h1, .reveal .portada h2 { color: #fff; }
+    .reveal .portada .sub { font-size: 1.1em; opacity: 0.9; padding-left: 0.6em; border-left: 3px solid var(--dorado); margin: 0.8em 0; }
+    .reveal .etiqueta { display: inline-block; font-size: 0.55em; font-weight: 600; color: var(--azul); background: var(--niebla); border-radius: 999px; padding: 0.15em 0.8em; margin-bottom: 0.6em; }
+    .reveal .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.7em; font-size: 0.72em; }
+    .reveal .tarjeta { background: #fff; border: 1px solid #e1e7f0; border-radius: 16px; padding: 0.9em 1em; box-shadow: 0 4px 14px rgb(13 42 92 / 0.06); }
+    .reveal .tarjeta h3 { font-size: 1.1em; margin: 0 0 0.3em; color: var(--azul); }
+    .reveal .tarjeta p { margin: 0; font-size: 0.95em; }
+    .reveal .flujo { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0.5em; font-size: 0.62em; }
+    .reveal .paso { flex: 1 1 160px; background: var(--niebla); border-radius: 14px; padding: 0.8em; position: relative; }
+    .reveal .paso b { display: block; color: var(--azul); margin-bottom: 0.2em; }
+    .reveal .paso.ia { background: var(--dorado-suave); }
+    .reveal .diagrama { font-size: 0.5em; line-height: 1.35; background: #0d2a5c; color: #e8eff9; padding: 1em 1.2em; border-radius: 14px; }
+    .reveal pre { width: 100%; box-shadow: none; font-size: 0.55em; }
+    .reveal pre code { border-radius: 12px; padding: 1em; max-height: 480px; }
+    .reveal .cita { background: var(--dorado-suave); border: 1px solid rgb(179 142 5 / 0.35); border-radius: 12px; padding: 0.6em 1em; font-size: 0.8em; }
+    .reveal .chip { display: inline-block; font-size: 0.7em; border: 1px solid rgb(23 73 159 / 0.25); background: var(--niebla); color: var(--azul); border-radius: 999px; padding: 0.05em 0.6em; font-weight: 600; }
+    .reveal table { font-size: 0.6em; }
+    .reveal table th { color: var(--azul); }
+    .reveal img.captura { border-radius: 14px; border: 1px solid #e1e7f0; box-shadow: 0 10px 30px rgb(13 42 92 / 0.15); max-height: 520px; }
+    .reveal .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; align-items: start; }
+    .reveal .pie { position: fixed; bottom: 14px; left: 20px; font-size: 13px; color: var(--gris); font-family: var(--r-main-font); }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <section class="centro">
+      <div class="portada">
+        <span class="etiqueta" style="background:#fff;color:var(--azul)">Proyecto final · INF-5170 Laboratorio de Programación III</span>
+        <h1>Primada</h1>
+        <p class="sub">Asistente conversacional del Estatuto Orgánico de la UASD, con inteligencia artificial y respuestas citadas</p>
+        <p><small style="color:#fff;opacity:.85">Edwin A. Roman Seberino (100732067) · Profesor: Radhames Silverio González · Universidad Autónoma de Santo Domingo</small></p>
+      </div>
+    </section>
+
+    <section>
+      <span class="etiqueta">El problema</span>
+      <h2>113 páginas, 146 artículos, una duda puntual</h2>
+      <ul>
+        <li class="fragment">La comunidad universitaria necesita saber <em>qué dice el Estatuto</em> sobre un tema concreto: quién integra un organismo, qué derechos tiene, cómo se organiza una facultad.</li>
+        <li class="fragment">Leer el documento completo no es realista; buscar palabras sueltas en el PDF tampoco responde preguntas.</li>
+        <li class="fragment">Un chat genérico "sabe" cosas, pero no garantiza que provengan del Estatuto ni dice de dónde salieron.</li>
+      </ul>
+      <p class="fragment cita">Objetivo: respuestas claras, breves y <strong>verificables</strong> (con el artículo citado), y la honestidad de decir "el Estatuto no lo cubre".</p>
+    </section>
+
+    <section>
+      <span class="etiqueta">Tecnologías utilizadas</span>
+      <h2>Todo en el navegador, sin backend</h2>
+      <div class="tarjetas">
+        <div class="tarjeta"><h3>Vue 3 + TypeScript</h3><p>Composition API, composables (<code>useChat</code>, <code>useConversaciones</code>, <code>useConfiguracion</code>), Vue Router (hash) y Vite.</p></div>
+        <div class="tarjeta"><h3>Gemini API (REST)</h3><p><code>gemini-3.5-flash-lite</code> con streaming SSE y <code>gemini-embedding-2</code> para los vectores. Sin SDK: <code>fetch</code> directo.</p></div>
+        <div class="tarjeta"><h3>Recuperación propia</h3><p>BM25 en TypeScript, similitud de coseno y fusión RRF escritos para el proyecto.</p></div>
+        <div class="tarjeta"><h3>Procesamiento del PDF</h3><p><code>pdfjs-dist</code> en Node para extraer y segmentar el Estatuto en build.</p></div>
+        <div class="tarjeta"><h3>Seguridad y UI</h3><p>Web Crypto (AES-GCM + IndexedDB), <code>marked</code> + <code>DOMPurify</code>, <code>lucide</code>.</p></div>
+        <div class="tarjeta"><h3>Calidad y despliegue</h3><p>Evaluación de recuperación, Playwright, GitHub Pages.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <span class="etiqueta">Arquitectura del sistema</span>
+      <h2>Dos momentos: build y navegador</h2>
+<pre class="diagrama" style="white-space:pre">
+ BUILD (una vez, Node)                         NAVEGADOR (cada pregunta)
+ ┌──────────────────────────────┐              ┌───────────────────────────────────────────────┐
+ │ PDF oficial (113 págs.)      │              │  Vue: ChatView · Compositor · Burbujas · Citas │
+ │   └► construir-corpus.mjs    │              │        │ pregunta                              │
+ │        limpieza, capítulos,  │   estatuto   │        ▼                                       │
+ │        146 artículos, páginas│──.json──────►│  Recuperador: BM25 + vectorial → RRF → top-8   │
+ │   └► generar-embeddings.mjs  │ embeddings   │        │ artículos                             │
+ │        gemini-embedding-2    │──.json──────►│        ▼                                       │
+ │        768 dims, Int8        │              │  Prompt: reglas + &lt;articulo numero="N"&gt;        │
+ └──────────────────────────────┘              │        ▼                                       │
+                                               │  Cadena: Gemini ─falla─► Groq ─falla─► sin IA  │
+   Persistencia en el cliente:                 │        ▼ streaming                             │
+   localStorage (conversaciones, config)       │  Respuesta con [Art. N] → panel del artículo   │
+   IndexedDB (clave de cifrado no extraíble)   │  → página exacta del PDF                       │
+                                               └───────────────────────────────────────────────┘
+</pre>
+      <p><small>Hospedado como sitio estático en GitHub Pages. Ningún servidor propio guarda datos ni claves.</small></p>
+    </section>
+
+    <section>
+      <span class="etiqueta">Integración de la IA</span>
+      <h2>RAG: recuperar, aumentar, generar</h2>
+      <div class="flujo">
+        <div class="paso fragment"><b>1 · Recuperar</b>La pregunta se busca en 222 unidades del Estatuto de dos formas: léxica (BM25) y semántica (embeddings). Los rankings se fusionan (RRF).</div>
+        <div class="paso fragment"><b>2 · Aumentar</b>Se construye el prompt del sistema: identidad, reglas estrictas y los artículos recuperados en bloques <code>&lt;articulo&gt;</code>.</div>
+        <div class="paso ia fragment"><b>3 · Generar</b>Gemini redacta en streaming, citando <code>[Art. N]</code>. Si no alcanza: «El Estatuto Orgánico no contiene información suficiente…».</div>
+        <div class="paso fragment"><b>4 · Verificar</b>Cada cita es un botón: abre el artículo completo y enlaza la página del PDF oficial.</div>
+      </div>
+      <p class="fragment" style="margin-top:0.8em"><small>¿Por qué RAG si el Estatuto cabe entero en el contexto (~45 mil tokens)? Porque reduce ~10× los tokens por pregunta, respeta los límites de la capa gratuita y hace explícita la "búsqueda inteligente" que pide la práctica.</small></p>
+    </section>
+
+    <section>
+      <span class="etiqueta">Integración de la IA</span>
+      <h2>Las reglas que recibe el modelo</h2>
+<pre><code data-trim data-noescape class="language-text">
+Usted es «Primada», asistente del Estatuto Orgánico de la UASD.
+1. Responda únicamente con los artículos que aparecen en &lt;contexto&gt;.
+2. Cite el artículo que respalda cada afirmación: [Art. N].
+3. Si el contexto no alcanza, diga textualmente: «El Estatuto Orgánico no
+   contiene información suficiente para responder esta pregunta.»
+4. Si la pregunta no trata sobre el Estatuto, indíquelo con cortesía.
+5. Español claro y breve, trato de usted, sin emojis.
+6. Use la conversación previa para entender seguimientos, pero fundamente
+   solo en el contexto actual.
+
+&lt;contexto&gt;
+  &lt;articulo numero="16" fuente="Artículo 16. Capítulo II: …"&gt;
+  Las Facultades son las unidades fundamentales de la Universidad…
+  &lt;/articulo&gt;
+  …
+&lt;/contexto&gt;
+</code></pre>
+    </section>
+
+    <section>
+      <span class="etiqueta">Funcionamiento del chatbot</span>
+      <h2>Una pregunta, paso a paso</h2>
+      <ol>
+        <li class="fragment">La persona elige una de las <strong>35 preguntas sugeridas</strong> (agrupadas en 6 temas) o escribe la suya. <code>Enter</code> envía.</li>
+        <li class="fragment">«Buscando en el Estatuto…»: recuperación local en milisegundos; si hay embeddings, una llamada para vectorizar la pregunta.</li>
+        <li class="fragment">«Redactando…»: la respuesta llega por streaming y se guarda cada 300 ms (no se pierde si se recarga).</li>
+        <li class="fragment">Chips <span class="chip">Art. 16</span> en el texto y lista de <em>artículos consultados</em>; clic → panel con el artículo y «Ver en el PDF, pág. 17».</li>
+        <li class="fragment">Historial: varias conversaciones por usuario, con título automático, renombrar y eliminar; URL compartible <code>#/c/&lt;id&gt;</code>.</li>
+        <li class="fragment">Modo demostración: una <strong>traza técnica</strong> bajo cada respuesta muestra consulta efectiva, rankings BM25 y vectorial, fragmentos entregados, proveedor y tokens.</li>
+      </ol>
+    </section>
+
+    <section>
+      <span class="etiqueta">Funcionamiento del chatbot</span>
+      <h2>Capturas</h2>
+      <div class="dos">
+        <figure><img class="captura" src="img/respuesta.png" alt="Respuesta de Primada con citas a artículos"><figcaption><small>Respuesta con citas y artículos consultados</small></figcaption></figure>
+        <figure><img class="captura" src="img/articulo.png" alt="Panel con el texto del artículo y enlace al PDF"><figcaption><small>Panel del artículo con enlace a la página del PDF</small></figcaption></figure>
+      </div>
+    </section>
+
+    <section>
+      <span class="etiqueta">El Estatuto como fuente</span>
+      <h2>Del PDF a un corpus confiable</h2>
+      <ul>
+        <li class="fragment">Fuente única: el PDF oficial publicado por Postgrado UASD (edición actualizada 2012), versionado en el repositorio.</li>
+        <li class="fragment">Script de build: extrae el texto por página, elimina encabezados y pies, une palabras cortadas por guion, detecta <em>Capítulo / Artículo / Párrafo / incisos</em>.</li>
+        <li class="fragment">Resultado verificado: <strong>22 capítulos, 146 artículos continuos (1–146), 65 términos del glosario</strong>, cada uno con su número de página.</li>
+        <li class="fragment">Artículos largos se subdividen (≤ 450 tokens) para que el contexto sea preciso; el glosario se penaliza para no desplazar a los artículos.</li>
+        <li class="fragment">Evaluación con las 35 preguntas del enunciado: ¿aparece un artículo del capítulo correcto entre los 5 primeros? BM25 35/35 · vectorial 35/35 · híbrida 35/35 tras ajustar la fusión (k = 10, 40 candidatos). Medida optimista: los parámetros se afinaron con esas mismas preguntas.</li>
+      </ul>
+    </section>
+
+    <section>
+      <span class="etiqueta">Fiabilidad y seguridad</span>
+      <h2>Degradar, no fallar</h2>
+      <div class="tarjetas">
+        <div class="tarjeta fragment"><h3>Cadena de proveedores</h3><p>Gemini → Groq → modo extractivo (artículos sin redactar). Ante cuota, red o bloqueo, la demo sigue respondiendo y un aviso explica qué pasó.</p></div>
+        <div class="tarjeta fragment"><h3>Claves de API</h3><p>Sin backend, la clave viaja en cada petición: por eso está <strong>restringida por dominio</strong> y en capa gratuita. El admin la ingresa en la app; se guarda cifrada con una clave no extraíble del dispositivo.</p></div>
+        <div class="tarjeta fragment"><h3>Respuestas seguras</h3><p>Markdown saneado con DOMPurify; solo enlaces http(s); las citas se validan contra los artículos reales.</p></div>
+        <div class="tarjeta fragment"><h3>Honestidad</h3><p>Frase fija cuando no hay información; rechazo cortés de temas ajenos; el modelo nunca cita artículos que no recibió.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <span class="etiqueta">Pruebas</span>
+      <h2>Cómo sabemos que funciona</h2>
+      <table>
+        <thead><tr><th>Nivel</th><th>Qué se prueba</th><th>Cómo</th></tr></thead>
+        <tbody>
+          <tr><td>Corpus</td><td>146/146 artículos, sin faltantes ni duplicados; capítulos completos</td><td>Validaciones del script de build</td></tr>
+          <tr><td>Recuperación</td><td>Acierto@5 con las 35 preguntas sugeridas (BM25, vectorial, híbrida)</td><td><code>npm run evaluar</code></td></tr>
+          <tr><td>Interfaz</td><td>Login y permisos, citas, panel de artículo, seguimiento, persistencia, respaldo ante 429, cifrado de la clave, móvil</td><td>Playwright con la API de Gemini simulada (27 comprobaciones)</td></tr>
+          <tr><td>Extremo a extremo</td><td>Respuestas reales de Gemini con citas, seguimiento, traza vectorial, scroll y pregunta fuera de alcance</td><td>Playwright con la clave real (12 comprobaciones)</td></tr>
+          <tr><td>Diseño</td><td>Antipatrones visuales, movimiento, accesibilidad básica</td><td>Detector de <em>impeccable</em>, revisión de animaciones, teclado</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <span class="etiqueta">Lecciones</span>
+      <h2>Lo que aprendimos construyéndolo</h2>
+      <ul>
+        <li class="fragment">Primero la «R» de RAG: medir la recuperación antes de gastar una sola llamada al modelo.</li>
+        <li class="fragment">El tamaño del documento cambia la arquitectura: con ~45 mil tokens, RAG es una decisión de costo y trazabilidad, no de capacidad.</li>
+        <li class="fragment">«Sin backend» tiene un precio: la clave es visible; la respuesta correcta es restringirla y acotar su daño, no esconderla en base64.</li>
+        <li class="fragment">La degradación elegante (API → respaldo → local) es el mismo patrón de las Prácticas 7 y 9, ahora aplicado a la IA.</li>
+        <li class="fragment">Las skills de diseño ayudaron a decidir (qué animar, qué no; modo Operate), pero el criterio sigue siendo humano.</li>
+      </ul>
+    </section>
+
+    <section class="centro">
+      <h2>Gracias</h2>
+      <p>Demostración en vivo: <a href="../">Primada</a></p>
+      <p><small>Código fuente: github.com/ecompute30/Lab_programacion3_INF5170 · Carpeta <code>ProyectoFinal_ChatbotEstatutoUASD</code></small></p>
+    </section>
+
+  </div>
+</div>
+<div class="pie">Primada · Proyecto final INF-5170 · UASD</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'fade',
+    width: 1100,
+    height: 700,
+    margin: 0.06,
+    plugins: [RevealHighlight, RevealNotes],
+  });
+</script>
+</body>
+</html>
